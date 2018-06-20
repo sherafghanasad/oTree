@@ -1,0 +1,49 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Round {{ player.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+    <p>
+        In this period, you are matched with the following employer. Before you can see the actual wage selected by
+        the employer, you need to make a guess of the selected wage. If your guess is exactly right, you will get 5
+        extra points. If it deviates by 5 points you will get 3 extra points. If it deviates by 10 points you will
+        get 1 extra point. If it deviates by more than 10, you won’t get any extra points.
+    </p>
+
+    <table border="1">
+        <tr>
+            <td>
+                Employer ID
+            </td>
+            <td>
+                {{ player.get_partner.participant.code }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wage selected by the employer
+            </td>
+            <td>
+                <b>Submit the wage guess to see this</b>
+            </td>
+        </tr>
+    </table>
+
+    {% formfield group.guessed_wage label="Enter your guess of wage here and click submit. " %}
+
+    <button>
+        Submit guess of wage
+    </button>
+
+    {% if player.id_in_group == 1 %}
+    {% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}
+    {% endif %}
+
+    {% if player.id_in_group == 2 %}
+    {% include 'gift_exchange/InstructionsForWorkerBaseline.html' %}
+    {% endif %}
+
+{% endblock %}

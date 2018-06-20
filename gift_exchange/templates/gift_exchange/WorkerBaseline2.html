@@ -1,0 +1,157 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Round {{ player.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+    <p>
+        In this period, you are matched with the following employer. Before you can see the actual wage selected by
+        the employer, you need to make a guess of the selected wage. If your guess is exactly right, you will get 5
+        extra points. If it deviates by 5 points you will get 3 extra points. If it deviates by 10 points you will
+        get 1 extra point. If it deviates by more than 10, you won’t get any extra points.
+    </p>
+
+    <table border="1">
+        <tr>
+            <td>
+                Employer ID
+            </td>
+            <td>
+                {{ player.get_partner.participant.code }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Wage selected by the employer
+            </td>
+            <td>
+                <b>{{ group.random_wage|c }}</b>
+            </td>
+        </tr>
+    </table>
+
+    Now you need to submit the effort choice in response to the selected wage offer by the employer. Before you submit
+    your effort choice, you may test different values by selecting effort in the earnings calculator below.
+
+    <form method="post" name="earning_calculator" action="form-to-email.php">
+        <body>
+        <fieldset>
+            <legend>Earnings Calculator</legend>
+    </fieldset>
+
+    <table width="" border="1">
+      <tbody>
+        <tr>
+        <tr>
+          <td scope="col">Wage by Employer</td>
+
+          <!--<td><select id="Line_One" name="Line_One" onchange="-->
+          <!--document.getElementById('value1').value=this.value;-->
+          <!--document.getElementById('e_earning').value = (120 - document.getElementById('value1').value) * document.getElementById('value2').value;-->
+          <!--document.getElementById('w_earning').value = document.getElementById('value1').value - 20 - document.getElementById('value3').value">-->
+              <!--<option value="{{ group.random_wage }}" selected="selected"> {{group.random_wage}}</option>-->
+              <!--&lt;!&ndash;<option value="20"> 20 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="25"> 25 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="30"> 30 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="35"> 35 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="40"> 40 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="45"> 45 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="50"> 50 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="55"> 55 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="60"> 60 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="65"> 65 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="70"> 70 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="75"> 75 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="80"> 80 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="85"> 85 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="90"> 90 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="95"> 95 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="100"> 100 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="105"> 105 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="110"> 110 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="115"> 115 points </option>&ndash;&gt;-->
+              <!--&lt;!&ndash;<option value="120"> 120 points </option>&ndash;&gt;-->
+            <!--</select></td>-->
+            <td>
+                <input type="text" id="wage" name="wage" value="{{group.random_wage}}" disabled>
+            </td>
+        </tr>
+        <tr>
+          <td scope="col">Effort by Worker</td>
+          <td><select id="Line_Two" name="Line_Two" onchange=
+          "document.getElementById('value2').value=this.value;
+          document.getElementById('value3').value =  this.options[this.selectedIndex].getAttribute('data-cost');
+          document.getElementById('e_earning').value = (120 - document.getElementById('wage').value) * document.getElementById('value2').value;
+          document.getElementById('effort_cost').value = document.getElementById('value3').value;
+          document.getElementById('w_earning').value = document.getElementById('wage').value - 20 - document.getElementById('value3').value">
+              <option value="" data-cost="" selected="selected"> Select </option>
+              <option value="0.1" data-cost = "0"> 0.1 </option>
+              <option value="0.2" data-cost = "1"> 0.2 </option>
+              <option value="0.3" data-cost = "2"> 0.3 </option>
+              <option value="0.4" data-cost = "4"> 0.4 </option>
+              <option value="0.5" data-cost = "6"> 0.5 </option>
+              <option value="0.6" data-cost = "8"> 0.6 </option>
+              <option value="0.7" data-cost = "10"> 0.7 </option>
+              <option value="0.8" data-cost = "12"> 0.8 </option>
+              <option value="0.9" data-cost = "15"> 0.9 </option>
+              <option value="1" data-cost = "18"> 1 </option>
+          </select></td>
+        </tr>
+      <tr>
+          <td>
+              <label for="e_earning">Employer Earning</label>
+          </td>
+          <td>
+              <input type="text" id="e_earning" name="e_earning" placeholder="Select effort to see this" disabled>
+          </td>
+      </tr>
+      <tr>
+          <td>
+              <label for="w_earning">Worker Earning</label>
+          </td>
+          <td>
+              <input type="text" id="w_earning" name="w_earning" placeholder="Select effort to see this" disabled>
+          </td>
+      </tr>
+      </tbody>
+    </table>
+      <fieldset>
+      <input type="hidden" id="value1">
+      <input type="hidden" id="value2">
+      <input type="hidden" id="value3">
+
+        <div class="form-row">
+          <!--<div class="label-container">-->
+            <!--<p><label for="e_earning">Employer Earning</label></p>-->
+            <!--<p><label for="w_earning">Worker Earning</label></p>-->
+            <!--&lt;!&ndash;<p><label for="effort_cost">Effort Cost</label></p>&ndash;&gt;-->
+          <!--</div>-->
+          <div class="input-container">
+            <p><input type="hidden" id="effort_cost" name="effort_cost" placeholder="Select wage and effort to see this" disabled></p>
+            <!--<p><input type="text" id="e_earning" name="e_earning" placeholder="Select wage and effort to see this" disabled></p>-->
+            <!--<p><input type="text" id="w_earning" name="w_earning" placeholder="Select wage and effort to see this" disabled></p>-->
+          </div>
+        </div>
+      </fieldset>
+
+    </body>
+    </form>
+
+    {% formfield group.effort label="Select the effort you want to submit for the above employer." %}
+
+    <button>
+        Submit effort decision
+    </button>
+
+    {% if player.id_in_group == 1 %}
+    {% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}
+    {% endif %}
+
+    {% if player.id_in_group == 2 %}
+    {% include 'gift_exchange/InstructionsForWorkerBaseline.html' %}
+    {% endif %}
+
+
+{% endblock %}

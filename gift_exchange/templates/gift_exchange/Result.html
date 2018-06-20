@@ -1,0 +1,37 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Round {{ player.round_number }} of {{ Constants.num_rounds }}
+{% endblock %}
+
+{% block content %}
+    <p>
+        This completes round {{ player.round_number }} of {{ Constants.num_rounds }}.
+    </p>
+
+        <p>
+            Here is the summary of what happened in this round;
+        </p>
+        <p>
+            Wage selected by the Employer = {{group.random_wage}} points
+        </p>
+        <p>
+            Effort provided by the worker = {{group.effort}}
+        </p>
+        <p>
+            Based on these choices the earnings in this round are as follow;
+        </p>
+
+        <p>
+            Employer Earning = {{e_earnings}} points
+        </p>
+
+        <p>
+            Worker Earnings = {{w_earnings}} points
+        </p>
+
+    <button>
+        Start next round
+    </button>
+{% endblock %}

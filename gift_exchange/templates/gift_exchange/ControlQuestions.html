@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+    <p>
+        Answer the following questions before you can proceed with the experiment.
+    </p>
+
+    {% formfield player.YourRole label="1.	What is your role in the experiment?" %}
+    {% formfield player.Periods label="2.	How many periods are there in this experiment?" %}
+    <p>
+        3.	Assume that in one of the periods an employer selected a wage of 20, and a worker chose the effort level of 0.1
+    </p>
+    {% formfield player.Question3E label="What will be employer earnings in this period? " %}
+    {% formfield player.Question3W label="What will be worker earnings in this period? " %}
+
+    <p>
+        4.	Assume that in one of the periods an employer selected a wage of 60, and a worker chose the effort level of 0.5
+    </p>
+    {% formfield player.Question4E label="What will be employer earnings in this period? " %}
+    {% formfield player.Question4W label="What will be worker earnings in this period? " %}
+
+    <p>
+        5.	Assume that in one of the periods an employer selected a wage of 100, and a worker chose the effort level of 1
+    </p>
+    {% formfield player.Question5E label="What will be employer earnings in this period? " %}
+    {% formfield player.Question5W label="What will be worker earnings in this period? " %}
+
+    {% next_button %}
+
+    {% if player.id_in_group == 1 %}
+    {% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}
+    {% endif %}
+
+    {% if player.id_in_group == 2 %}
+    {% include 'gift_exchange/InstructionsForWorkerBaseline.html' %}
+    {% endif %}
+
+
+    <!--{% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}-->
+
+{% endblock %}

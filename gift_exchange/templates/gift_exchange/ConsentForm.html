@@ -1,0 +1,67 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Consent Form
+{% endblock %}
+
+{% block content %}
+    <h5>Title of Study:</h5> Decisions in Labor Market
+    <h5>Investigator:</h5> Sher Afghan Asad
+
+    <p>
+    This form describes a research project. It has information to help you decide whether you wish to participate. Research studies include only people who choose to take part – your participation is completely voluntary. Please email any questions you have about the study or about this form to the project staff (saasad@iastate.edu) before participating.
+    </p>
+
+    <h5>Introduction</h5>
+    <p>
+    This experiment is part of the research project conducted by Iowa State University. It is used to analyze decision behavior in markets. Specifically, the project tries to understand how people make decisions about wages and effort levels in the artifactual labor market.
+    </p>
+    <h5>Description of Procedures</h5>
+    <p>
+    If you agree to participate in this study, you will be randomly matched with another participant. You and your randomly matched participants will make decisions about wage offers and effort levels that will affect your and your matched participant earnings. The experiment will last for approximately 45 minutes. You will be given more information about the structure of the study in the instructions.
+    </p>
+    <h5>Risks or Discomforts</h5>
+    <p>
+    There are no foreseeable risks at this time in participating in the study.
+    </p>
+    <h5>Benefits</h5>
+    <p>
+    If you decide to participate in this study, there are no direct benefits to you. It is hoped that the information gained in this study will benefit society by providing more insight into the process of how decisions are made in the labor markets.
+    </p>
+    <h5>Costs and Compensation</h5>
+    <p>
+    You will not bear any costs from participating in this study. If you participate you will spend no longer than 45 minutes. Participants will earn between $3 and $13 in the study. Your final compensation will vary depending on your and your randomly matched participant choices. You will need to complete a form to receive payment.
+    </p>
+    <h5>Participant Rights</h5>
+    <p>
+    Participating in this study is completely voluntary. You may choose not to take part in the study or to stop participating at any time, for any reason, without penalty or negative consequences. If you have any questions about the rights of research subjects or research-related injury, please contact the IRB Administrator, 515-294-4566, IRB@iastate.edu, or Director, 515-294-3115, Office for Responsible Research, Iowa State University, Ames, Iowa 50011.
+    </p>
+    <h5>Confidentiality</h5>
+    <p>
+    This consent form and any other documents identifying participants will be kept confidential to the extent permitted by applicable laws and regulations and will not be made publicly available. However, federal government regulatory agencies, auditing departments of Iowa State University, and the Institutional Review Board (a committee that reviews and approves human subject research studies) may inspect and/or copy study records for quality assurance and data analysis. These records may contain private information. This experiment is approved by the Institutional Review Board at Iowa State University (ISU IRB: _____ Approved Date: ______ Expiration Date: ______). If you decide to participate in this experiment you should know that researchers of the project will use identifiable information from your upwork profile to do the analysis, along with the decisions that you make in experiment. It is assured that the confidentiality of your profile data along with the choices that you make in an experiment will be strictly maintained. To ensure confidentiality to the extent permitted by law, the following measures will be taken: Data will be stored on a secure computer or department server under password protection. Your identifiable information will be separated from your decisions in the experiment. When we report results, we will group responses in aggregate; individual responses will not be shared.
+    </p>
+    <h5>Future Use of Data</h5>
+    <p>
+    De-identified information collected about you during this study may be shared with other researchers or used for future research studies. We will not obtain additional informed consent from you before sharing the de-identified data.
+    </p>
+    <h5>Questions</h5>
+    <p>
+    You are encouraged to ask questions at any time during this study. For further information about the study, contact Sher Afghan Asad at 515-735-6309 or saasad@iastate.edu.
+    </p>
+    <h5>Consent and Authorization Provisions</h5>
+    <p>
+    Your signature indicates that you voluntarily agree to participate in this study, that the study has been explained to you, that you have been given the time to read the document, and that your questions have been satisfactorily answered. You may print a copy of this informed consent document for your records.
+    </p>
+    <h5>Participant's Electronic Signature</h5>
+    <p>
+    By writing my name I acknowledge I have read and agree with the material contained in the Informed Consent Document. Please copy and paste you upwork profile link below.
+    </p>
+
+    {% formfield player.name label="Enter your name" %}
+
+    {% formfield player.profile_link label="Copy the link to your upwork profile" %}
+
+    {% next_button %}
+
+{% endblock %}

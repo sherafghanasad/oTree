@@ -1,0 +1,132 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Instructions
+{% endblock %}
+
+{% block content %}
+<p>
+    This experiment is part of the research project conducted by Iowa State University. It is used to analyze decision
+    behavior in markets. The instructions are simple and if you read them carefully and make appropriate decisions, you
+    can earn money ranging from zero to 8 dollars (on top of 3 dollars participation fee). Your earnings will be
+    calculated in points which will be converted to dollars at the end of experiment at the following rate;
+</p>
+
+<h6> 1 point = 10 cents </h6>
+<p>
+    In this whole experiment consider yourself as an employer who is hiring workers. These workers are real people
+    (like yourself) who are assigned the “role of worker” by the experimenters. As part of this experiment you will
+    be randomly matched with different workers. You will select a wage offer for the matched worker and the worker
+    will select the effort level.
+</p>
+
+<p>
+    Effort is costly to workers but profitable to employers (like yourself). Throughout this experiment, your randomly
+    matched worker will not know your identity.
+</p>
+
+<p>
+    The experiment will consist of 10 periods. In each period you will be matched with a new worker. Each period will
+    consist of two stages. In the first stage you (employer) will select a wage level. In the second stage worker will
+    see the wage and choose the effort level. Wage rate and effort level will affect yours and your worker’s earnings.
+    Your worker’s earning from a period will be as follows;
+</p>
+
+<h6> Worker Earning = (Wage - 20 - Effort Cost)</h6>
+
+<p>
+    Your (employer) earning will be as follows;
+</p>
+
+<h6> Employer Earning = (120 - Wage) x Effort </h6>
+
+<p>
+    Putting more effort is costly to workers but it benefits you (employer). Worker’s cost for each allowed level of
+    efforts is as follows;
+</p>
+
+<table>
+  <tr>
+    <th>Effort</th>
+    <th>Effort Cost</th>
+  </tr>
+  <tr>
+    <td>0.1</td>
+    <td>0</td>
+  </tr>
+  <tr>
+    <td>0.2</td>
+    <td>1</td>
+  </tr>
+  <tr>
+    <td>0.3</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>0.4</td>
+    <td>4</td>
+  </tr>
+  <tr>
+    <td>0.5</td>
+    <td>6</td>
+  </tr>
+  <tr>
+    <td>0.6</td>
+    <td>8</td>
+  </tr>
+  <tr>
+    <td>0.7</td>
+    <td>10</td>
+  </tr>
+  <tr>
+    <td>0.8</td>
+    <td>12</td>
+  </tr>
+  <tr>
+    <td>0.9</td>
+    <td>15</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>18</td>
+  </tr>
+</table>
+<style>
+table, th, td {
+    border: 0.1px solid black;
+}
+</style>
+
+<p>
+    You (employer) can offer any wage between 20 and 120 (in increments of 5).
+</p>
+
+<p>
+    For example, if you (employer) selected the wage offer of 50, your worker chose effort level of 0.5 and you
+    (employer) decided to choose Multiplier = 1.5 then your worker’s and yours earning will be as follows;
+</p>
+
+
+<h6> Worker Earning = (50 - 20 - 6) = 24 </h6>
+
+<h6> Employer Earning = (120 - 50) x 0.5 = 35 </h6>
+
+<p>
+    Throughout the experiment you will have access to on-screen calculator in which you can input different values for
+    effort and see your earnings and your employers’ earning for that period before submitting your effort choice.
+    As already mentioned there will be 10 periods in this experiment, which means you will make an effort choice 10 times
+    (for 10 different employers). At the end of this experiment, one of the 10 periods will be randomly chosen by the
+    computer and you and your final earnings will be what you and your worker earned in that chosen period. It is in your
+    interest to do your best in each period.
+</p>
+
+<p>
+    Make sure you understand the instructions before proceeding. The next screen will ask you questions related to some
+     arbitrary examples of what could happen in the experiment. These instructions will be accessible to you throughout
+      the experiment.
+</p>
+
+    {% next_button %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    First Stage
+{% endblock %}
+
+{% block content %}
+<p>
+    In this period, you are matched with a random worker. You will select a wage offer for a worker by drawing a ball
+    from the jar below. But before you draw the ball, please state the wage that you would have offered to the worker
+    if you could offer any wage of your choice;
+</p>
+
+    {% formfield group.proposed_wage label="Wage that you would offer" %}
+
+    <button>
+        Submit proposed wage
+    </button>
+
+    <input type="hidden" name="random_wage" value="{{ rwage }}" id="id_random_wage"/>
+
+    {% if player.id_in_group == 1 %}
+    {% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}
+    {% endif %}
+
+    {% if player.id_in_group == 2 %}
+    {% include 'gift_exchange/InstructionsForWorkerBaseline.html' %}
+    {% endif %}
+
+
+    <!--{% include 'gift_exchange/InstructionsForEmployerBaseline.html' %}-->
+
+{% endblock %}
