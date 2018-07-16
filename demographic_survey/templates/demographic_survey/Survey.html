@@ -1,0 +1,101 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Enter your information
+{% endblock %}
+
+{% block content %}
+
+    Please enter the following information.
+
+    {% formfield player.mturkid label="MTurk Worker ID" %}
+
+    {% formfield player.gender label="Gender that you closely identify with" %}
+
+    {% formfield player.race label="Race that you closely identify with" %}
+
+    {% formfield player.age label="How old are you" %}
+
+    {% formfield player.education label="Highest education level reached" %}
+
+<p>
+    Take a clearly visible picture of your face using your webcam. Make sure you follow the following guidelines when
+    taking a photo;
+</p>
+<p>
+    1. Your head must face the camera directly with full face in view.
+</p>
+
+<p>
+    2. You must have a neutral facial expression or a natural smile, with both eyes open.
+</p>
+<p>
+    3. Taken in clothing normally worn on a daily basis.
+</p>
+<p>
+    4. Use a plain white or off-white background.
+</p>
+
+<p>
+    You can take multiple photos, click next when you are satisfied with the picture shown on the right.
+    <b>Your HIT may NOT be approved if your photo does not meet one or more of the above guidelines. </b>
+</p>
+
+  <div class="row well-lg">
+    <div  class="col-md-5" id="my_camera" style="width:320px; height:240px;"></div>
+    <div  class="col-md-2">
+
+    </div>
+    <div  class="col-md-5" id="my_result"></div>
+</div>
+
+<input type="hidden" name="testimage" required id="id_testimage" class="form-control">
+
+<div  class="row">
+<div  class="col-md-12">
+<button type="button" class="btn btn-danger" id='make_photo'>Take photo!</button>
+</div>
+</div>
+<br>
+<div  class="row">
+  <div  class="col-md-12">
+    {% next_button %}
+    </div>
+    </div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src='{% static "demographic_survey/newcamera/webcam.js" %}' type="text/javascript"></script>
+<script>
+
+$(function() {
+    $("#make_photo").click( function()
+         {
+          take_snapshot();
+         }
+    );
+});
+
+</script>
+
+
+
+<script language="JavaScript">
+  Webcam.attach( '#my_camera' );
+
+  function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+      document.getElementById('id_testimage').value = data_uri;
+    } );
+  }
+</script>
+
+
+
+{% endblock %}
+{% block styles %}
+
+{% endblock %}

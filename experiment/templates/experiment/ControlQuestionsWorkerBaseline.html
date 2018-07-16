@@ -1,0 +1,25 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Answer the following questions before you can proceed with the experiment.
+</p>
+
+    {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
+    {% formfield player.Question8 label="2.	Who will select a bonus rate for you" %}
+    {% formfield player.Question2 label="3. What is the lowest bonus rate that can be selected by other participant (in cents)?" %}
+    {% formfield player.Question3 label="4. What is the maximum bonus rate that can be selected by other participant (in cents)?" %}
+    {% formfield player.Question4 label="5.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
+    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for the other participant." %}
+
+    {% next_button %}
+
+    {% include 'experiment/InstructionsWorkerBaseline.html' %}
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Bonus Rate
+{% endblock %}
+
+{% block content %}
+
+    {% formfield group.guessed_piece_rate label="Before you see the chosen bonus rate, select your guess here. This will not have any affect on the rate which is already chosen by the other participant"%}
+
+<p>
+    The other participant has chosen a following bonus rate for you; 
+</p>
+
+<h1>
+    Bonus Rate = {{group.piece_rate}} per 100 points scored
+</h1>
+
+<p>
+    Now, when you are ready click next to start working on the button-pressing task for next 10 minutes. You are free to
+    score as many points as you can.
+</p>
+
+    <button>
+        Start the button-pressing task
+    </button>
+
+{% endblock %}

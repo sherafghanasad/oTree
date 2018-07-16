@@ -73,6 +73,19 @@ SESSION_CONFIGS = [
     'num_demo_participants': 6,
     'app_sequence': ['gift_exchange'],
     },
+    {
+    'name': 'demographic_survey',
+    'display_name': "Demographic Survey",
+    'num_demo_participants': 3,
+    'app_sequence': ['demographic_survey'],
+    },
+    {
+    'name': 'experiment',
+    'display_name': "Experiment",
+    'num_demo_participants': 4,
+    'app_sequence': ['experiment'],
+    },
+
     # other session configs go here ...
 ]
 
@@ -85,7 +98,7 @@ LANGUAGE_CODE = 'en'
 
 # e.g. EUR, GBP, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+USE_POINTS = False
 
 ROOMS = [
     {

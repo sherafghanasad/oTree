@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Answer the following questions before you can proceed with the experiment.
+</p>
+
+    {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
+    {% formfield player.Question2 label="2. What is the lowest bonus rate that you can select for other participant (in cents)?" %}
+    {% formfield player.Question3 label="3. What is the maximum bonus rate that you can select for other participant (in cents)?" %}
+    {% formfield player.Question4 label="4.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
+    {% formfield player.Question5 label="5.	Higher bonus rate for one participant means lower bonus rate for another." %}
+
+<p>
+    <b>For following questions feel free to use the bonus calculator (at the bottom of this page)</b>
+</p>
+
+<p>
+    6. Suppose you selected a bonus rate of “0 cents for every 100 points”, the other participant
+    scored 1500 points then;
+</p>
+
+    {% formfield player.Question6E label="What will be your's bonus amount (in dollars)?" %}
+    {% formfield player.Question6W label="What will be the other participant's bonus amount (in dollars)?" %}
+
+<p>
+    7. Suppose you selected a bonus rate of “6 cents for every 100 points”, the other participant
+    scored 2000 points then;
+</p>
+
+    {% formfield player.Question7E label="What will be your's bonus amount (in dollars)?" %}
+    {% formfield player.Question7W label="What will be the other participant's bonus amount (in dollars)?" %}
+
+    {% next_button %}
+
+    {% include 'experiment/InstructionsEmployerBaseline.html' %}
+
+{% endblock %}
