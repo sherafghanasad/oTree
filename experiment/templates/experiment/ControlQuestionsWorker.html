@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Control Questions
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Answer the following questions before you can proceed with the experiment.
+</p>
+
+    {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
+    {% formfield player.Question8 label="2.	Who has selected a bonus rate for you" %}
+    {% formfield player.Question2 label="3. What is the lowest bonus rate that could have been selected by the other participant (in cents)?" %}
+    {% formfield player.Question3 label="4. What is the maximum bonus rate that could have been selected by the other participant (in cents)?" %}
+    {% formfield player.Question4 label="5.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
+    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for the other participant." %}
+
+{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
+    {% formfield player.Question9 label="7.	The other participant may reward your effort depending on how many points you score on the task." %}
+{% else %}
+    <input type="hidden" name="Question9" value="True" id="id_Question9"/>
+{% endif %}
+
+    {% next_button %}
+
+    {% include 'experiment/InstructionsWorker.html' %}
+
+{% endblock %}

@@ -1,6 +1,8 @@
 import os
 from os import environ
 import dj_database_url
+from boto.mturk import qualification
+
 import otree.settings
 
 
@@ -16,74 +18,74 @@ SESSION_CONFIG_DEFAULTS = {
 }
 
 SESSION_CONFIGS = [
-    {
-        'name': 'public_goods',
-        'display_name': "Public Goods",
-        'num_demo_participants': 3,
-        'app_sequence': ['public_goods', 'payment_info'],
-    },
-    {
-        'name': 'guess_two_thirds',
-        'display_name': "Guess 2/3 of the Average",
-        'num_demo_participants': 3,
-        'app_sequence': ['guess_two_thirds', 'payment_info'],
-    },
-    {
-        'name': 'survey',
-        'display_name': "Survey",
-        'num_demo_participants': 1,
-        'app_sequence': ['survey', 'payment_info'],
-    },
-    {
-        'name': 'quiz',
-        'display_name': "Quiz",
-        'num_demo_participants': 1,
-        'app_sequence': ['quiz'],
-    },
-    {
-        'name': 'my_simple_survey',
-        'display_name': "My Simple Survey",
-        'num_demo_participants': 3,
-        'app_sequence': ['my_simple_survey'],
-    },
-    {
-        'name': 'my_public_goods',
-        'display_name': "My Public Goods (Simple Version)",
-        'num_demo_participants': 3,
-        'app_sequence': ['my_public_goods'],
-        'use_browser_bots': False
-    },
-    {
-    'name': 'my_trust',
-    'display_name': "My Trust Game (simple version from tutorial)",
-    'num_demo_participants': 2,
-    'app_sequence': ['my_trust'],
-    },
-    {
-    'name': 'my_matching_pennies',
-    'display_name': "My Matching Pennies (tutorial version)",
-    'num_demo_participants': 2,
-    'app_sequence': [
-        'my_matching_pennies',
-    ],
-    },
-    {
-    'name': 'gift_exchange',
-    'display_name': "Gift Exchange Game",
-    'num_demo_participants': 6,
-    'app_sequence': ['gift_exchange'],
-    },
-    {
-    'name': 'demographic_survey',
-    'display_name': "Demographic Survey",
-    'num_demo_participants': 3,
-    'app_sequence': ['demographic_survey'],
-    },
+    # {
+    #     'name': 'public_goods',
+    #     'display_name': "Public Goods",
+    #     'num_demo_participants': 3,
+    #     'app_sequence': ['public_goods', 'payment_info'],
+    # },
+    # {
+    #     'name': 'guess_two_thirds',
+    #     'display_name': "Guess 2/3 of the Average",
+    #     'num_demo_participants': 3,
+    #     'app_sequence': ['guess_two_thirds', 'payment_info'],
+    # },
+    # {
+    #     'name': 'survey',
+    #     'display_name': "Survey",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['survey', 'payment_info'],
+    # },
+    # {
+    #     'name': 'quiz',
+    #     'display_name': "Quiz",
+    #     'num_demo_participants': 1,
+    #     'app_sequence': ['quiz'],
+    # },
+    # {
+    #     'name': 'my_simple_survey',
+    #     'display_name': "My Simple Survey",
+    #     'num_demo_participants': 3,
+    #     'app_sequence': ['my_simple_survey'],
+    # },
+    # {
+    #     'name': 'my_public_goods',
+    #     'display_name': "My Public Goods (Simple Version)",
+    #     'num_demo_participants': 3,
+    #     'app_sequence': ['my_public_goods'],
+    #     'use_browser_bots': False
+    # },
+    # {
+    # 'name': 'my_trust',
+    # 'display_name': "My Trust Game (simple version from tutorial)",
+    # 'num_demo_participants': 2,
+    # 'app_sequence': ['my_trust'],
+    # },
+    # {
+    # 'name': 'my_matching_pennies',
+    # 'display_name': "My Matching Pennies (tutorial version)",
+    # 'num_demo_participants': 2,
+    # 'app_sequence': [
+    #     'my_matching_pennies',
+    # ],
+    # },
+    # {
+    # 'name': 'gift_exchange',
+    # 'display_name': "Gift Exchange Game",
+    # 'num_demo_participants': 6,
+    # 'app_sequence': ['gift_exchange'],
+    # },
+    # {
+    # 'name': 'demographic_survey',
+    # 'display_name': "Demographic Survey",
+    # 'num_demo_participants': 3,
+    # 'app_sequence': ['demographic_survey'],
+    # },
     {
     'name': 'experiment',
     'display_name': "Experiment",
     'num_demo_participants': 4,
-    'app_sequence': ['experiment'],
+    'app_sequence': ['demographic_survey', 'experiment'],
     },
 
     # other session configs go here ...

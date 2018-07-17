@@ -20,7 +20,7 @@ class Survey(Page):
         # If none or len 0, means illegal image data
         if (ImageData == None or len(ImageData) == 0):
             # PRINT ERROR MESSAGE HERE
-            pass
+            print('You must take a picture to continue')
 
         # Decode the 64 bit string into 32 bit
         ImageData = base64.b64decode(ImageData)
@@ -31,22 +31,31 @@ class Survey(Page):
         f.write( ImageData)
         f.close()
 
-class Results(Page):
-    form_model = models.Player
-    form_fields = ['delete_photo']
+        # self.participant.vars['testimage'] = self.player.testimage
 
-    def vars_for_template(self):
-        return {'myphoto':'demographic_survey/photo{}.jpg'.format(self.participant.code)}
+class Disqualified(Page):
+    def is_displayed(self):
+        return ((self.player.race != 'Black or African-American' and
+                self.player.race != 'White or Caucasian') or
+                self.player.age == 'Under 18')
 
-    def before_next_page(self):
-        if self.player.delete_photo:
-            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-            path_to_file = os.path.join(BASE_DIR, 'static/demographic_survey/photo{}.jpg'.format(self.participant.code))
-            os.remove(path_to_file)
-
+# class Results(Page):
+#     form_model = models.Player
+#     form_fields = ['delete_photo']
+#
+#     def vars_for_template(self):
+#         return {'myphoto':'demographic_survey/photo{}.jpg'.format(self.participant.code)}
+#
+#     def before_next_page(self):
+#         if self.player.delete_photo:
+#             BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#             path_to_file = os.path.join(BASE_DIR, 'static/demographic_survey/photo{}.jpg'.format(self.participant.code))
+#             os.remove(path_to_file)
+#
 
 
 page_sequence = [
     Survey,
+    Disqualified
     # Results
 ]

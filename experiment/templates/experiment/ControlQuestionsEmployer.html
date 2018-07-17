@@ -1,24 +1,34 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load static otree %}
 
 {% block title %}
-{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
-    Select bonus rate
-{% else %}
-    Select bonus rate and reward decision
-{% endif %}
-
+    Control Questions
 {% endblock %}
-
+<style>
+    form {
+        margin: 0 auto;
+        width:250px;
+        text-align: center;
+    }
+</style>
 {% block content %}
-{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
-    <p>
-        As explained in the instructions, you will be paid 10 cents for every 100 points scored by some other participant. You
-        can choose to transfer part of these 10 cents to the other participant who will work on a task for 10 minutes. Before
-        you decide much you want to share with the other participant, you may input different numbers in the calculator
-        below to see bonus amounts for yourself and the other participant.
-    </p>
 
+<p>
+    Answer the following questions before you can proceed with the experiment.
+</p>
+
+    {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
+    {% formfield player.Question2 label="2. What is the lowest bonus rate that you can select for other participant (in cents)?" %}
+    {% formfield player.Question3 label="3. What is the maximum bonus rate that you can select for other participant (in cents)?" %}
+    {% formfield player.Question4 label="4.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
+    {% formfield player.Question5 label="5.	Higher bonus rate for one participant means lower bonus rate for another." %}
+
+<p>
+    <b>For following questions feel free to use the bonus calculator </b>
+
+</p>
+
+{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
             <fieldset>
@@ -93,21 +103,25 @@
           <input type="hidden" id="value3">
 
           </fieldset>
-        <script>
-            var z = 10-document.getElementById('Line_One').value;
-            document.getElementById('demo').innerHTML = z + "cents for every 100 points.";
-        </script>
 
         </body>
         </form>
-{% else %}
     <p>
-        As explained in the instructions, you will be paid 10 cents for every 100 points scored by some other participant. You
-        can choose to transfer part of these 10 cents to the other participant who will work on a task for 10 minutes.
-        You will also decide if you want to reward the other participant for his/her performance in the task. Before
-        you decide much you want to share with the other participant and whether you want to reward him/her, you may
-        input different numbers in the calculator below to see bonus amounts for yourself and the other participant.
+        6. Suppose you selected a bonus rate of “0 cents for every 100 points”, the other participant
+        scored 1500 points then;
     </p>
+
+        {% formfield player.Question6E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question6W label="What will be the other participant's bonus amount (in dollars)?" %}
+
+    <p>
+        7. Suppose you selected a bonus rate of “6 cents for every 100 points”, the other participant
+        scored 2000 points then;
+    </p>
+
+        {% formfield player.Question7E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question7W label="What will be the other participant's bonus amount (in dollars)?" %}
+{% else %}
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
             <fieldset>
@@ -198,19 +212,30 @@
 
           </fieldset>
 
+
         </body>
         </form>
+
+    <p>
+        6. Suppose you selected a bonus rate of “0 cents for every 100 points”, the other participant
+        scored 1500 points and you decided NOT to reward the other participant then;
+    </p>
+
+        {% formfield player.Question6E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question6W label="What will be the other participant's bonus amount (in dollars)?" %}
+
+    <p>
+        7. Suppose you selected a bonus rate of “6 cents for every 100 points”, the other participant
+        scored 2000 points and you decided to reward the other participant then;
+    </p>
+
+        {% formfield player.Question7E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question7W label="What will be the other participant's bonus amount (in dollars)?" %}
 {% endif %}
 
-    {% formfield group.piece_rate label = "Now, how much do you want to transfer to the other participant for every 100 points scored by him/her?" %}
-    {% formfield group.guessed_points label = "How many points do you expect the other participant to score in 10 minutes? (This information will not be shared with the other participant)." %}
-
-{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
-    {% formfield group.target_points label = "How many points should the other participant score to get reward from you? (Enter 0 if you want to always reward the other participant, enter a really large number (such as 9999) if you don't want to reward the other participant.)" %}
-{% else %}
-    <input type="hidden" name="target_points" value="999999" id="id_target_points"/>
-{% endif %}
 
     {% next_button %}
+
+    {% include 'experiment/InstructionsEmployer.html' %}
 
 {% endblock %}

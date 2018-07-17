@@ -2,7 +2,8 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-
+from django.db import models as django_models
+import random
 
 author = 'Sher Afghan Asad'
 
@@ -18,19 +19,30 @@ class Constants(BaseConstants):
     task_timer = 600
 
 class Subsession(BaseSubsession):
-    pass
+
+    def creating_session(self):
+        # randomize to treatments
+        for g in self.get_groups():
+            g.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
+            print('set group.treatment to', g.treatment)
+
+    # group_by_arrival_time = True
 
 class Group(BaseGroup):
+
+    treatment = models.StringField()
+
     piece_rate = models.CurrencyField(
-        choices=currency_range(0.01, 0.1, 0.01)
+        choices=currency_range(0, 0.1, 0.01)
     )
 
     guessed_piece_rate = models.CurrencyField(
-        choices=currency_range(0.01, 0.1, 0.01)
+        choices=currency_range(0, 0.1, 0.01)
     )
 
-    points = models.IntegerField()
+    points = models.IntegerField(default='0')
     guessed_points = models.IntegerField()
+    target_points = models.IntegerField()
 
     # def set_payoffs(self):
     #     print('in set_payoffs')
@@ -51,9 +63,32 @@ class Player(BasePlayer):
     def get_partner(self):
         return self.get_others_in_group()[0]
 
+    # mturkid = models.StringField()
+    # gender = models.StringField(
+    #     choices=['Male', 'Female', 'Other', 'Prefer not to answer'],
+    #     widget=widgets.RadioSelect
+    # )
+    # race = models.StringField(
+    #     choices=['American Indian or Alaskan Native', 'Asian', 'Black or African-American', 'Native Hawaiian or other Pacific Islander',
+    #              'White or Caucasian', 'Other',  'Prefer not to answer'],
+    #     widget=widgets.RadioSelect
+    # )
+    # age = models.StringField(
+    #     choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over', 'Prefer not to answer'],
+    #     widget=widgets.RadioSelect
+    # )
+    # education = models.StringField(
+    #     choices=['High School', 'College', 'Graduate School', 'Other', 'Prefer not to answer'],
+    #     widget=widgets.RadioSelect
+    # )
+    # testimage = models.LongStringField()
+    #
+    # delete_photo = models.BooleanField()
+
     Question1 = models.LongStringField(
         choices=["Work on a task for 10 minutes.",
                  "Select a bonus rate for a person who will work on a task.",
+                 "Select a bonus rate and a reward decision for a person who will work on a task.",
                  "Select a bonus rate and work on a task."],
         widget=widgets.RadioSelect
     )
@@ -75,5 +110,8 @@ class Player(BasePlayer):
         choices=['Some other participant',
                  'Experimenters/Researchers',
                  'Computer/Random']
+    )
+    Question9 = models.BooleanField(
+        choices=[True, False]
     )
 

@@ -1,22 +1,108 @@
 {% extends "global/Page.html" %}
-{% load otree static %}
+{% load static otree %}
 
 {% block title %}
-{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
-    Select bonus rate
-{% else %}
-    Select bonus rate and reward decision
-{% endif %}
-
+    Instructions
 {% endblock %}
 
+
 {% block content %}
+
+<p>
+    Welcome to our economics experiment! Please read the following instructions very carefully.
+</p>
+
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
     <p>
-        As explained in the instructions, you will be paid 10 cents for every 100 points scored by some other participant. You
-        can choose to transfer part of these 10 cents to the other participant who will work on a task for 10 minutes. Before
-        you decide much you want to share with the other participant, you may input different numbers in the calculator
-        below to see bonus amounts for yourself and the other participant.
+        Your task is to <b>select a bonus rate for another participant</b> who will work on a simple button-pressing task
+        (details of button-pressing task are given below). Both you and the other participant will be paid 1 dollar
+        just for participating in this study, you both can earn additional bonus amount depending upon the decisions in
+        this experiment. The bonuses will be paid in 24 hours.
+    </p>
+{% else %}
+    <p>
+        Your task is to <b>select a bonus rate for another participant</b> who will work on a simple button-pressing task
+        (details of button-pressing task are given below) and then <b>decide whether to reward the other participant</b>
+        based on the number of points scored by him/her. Both you and the other participant will be paid 1 dollar
+        just for participating in this study, you both can earn additional bonus amount depending upon the decisions in
+        this experiment. The bonuses will be paid in 24 hours.
+    </p>
+{% endif %}
+
+<p>
+    You will be paid a bonus of <b>10 cents for every 100 points scored by that other participant</b>. You can choose to
+    <b>transfer part of these 10 cents to that participant</b> (in increments of 1 cent) which will serve as a bonus payment
+    for him/her for every 100 points that he/she scores. The other participant will have 10 minutes to work on the
+    task.
+</p>
+
+{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
+    <p>
+        Additionally, you may decide to give ten percent of your bonus payment to the other participant as a <b>reward</b>
+        after he/she has finished working. The other participant will not know whether you have chosen to reward
+        him/her until he/she has finished working on the task.
+    </p>
+{% endif %}
+
+{% if group.treatment == 'Baseline' or group.treatment == 'Three Stage' %}
+    <p>
+        The other participant will not know anything about your identity and will only see the bonus rate selected by
+        you before starting to work on the task.
+    </p>
+{% else %}
+    <p>
+        The other participant will see your picture and the bonus rate selected by you before starting to work on the task.
+    </p>
+{% endif %}
+
+{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
+    <p>
+        <b>
+            To summarize, you will select a bonus rate for another participant, another participant will observe what you have
+            chosen and will then work on a button pressing task for 10 minutes. Bonus payments will be determined once the
+            other participant has finished working on the task.
+        </b>
+    </p>
+{% else %}
+    <p>
+        <b>
+            To summarize, you will select a bonus rate for another participant and decide whether to reward the other
+            participant based on number of points scored by him/her, the other participant will only observe the bonus rate
+            chosen by you before starting to work on a task for 10 minutes. Your decision to reward will be revealed to the
+            other participant after he/she has finished working on the task. Bonus payments will be determined once the
+            other participant has finished working on the task.
+        </b>
+    </p>
+{% endif %}
+
+<p>
+    Here are few examples of how bonuses for you and the other participant will be calculated.
+</p>
+
+{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
+
+    <p>
+        <b>Example 1:</b> Suppose you choose 5 cents for the other participant and that participant score 2000 points in
+        10 minutes, then your bonus amount will be (10-5)×2000/100=100 cents=$1 and the other participant’s bonus amount
+        will be 5×2000/100=100 cents=$1.
+    </p>
+
+    <p>
+        <b>Example 2:</b> Suppose you choose 0 cents for other participant and that participant scores 2000 points, then
+        your bonus amount will be (10-0)×2000/100=200 cents=$2 and the other participant’s bonus amount will be
+        0×2000/100=0 cent=$0.
+    </p>
+
+    <p>
+        <b>Example 3:</b> Similarly, suppose you choose 10 cents for the other participant and that participant again
+        score 2000 points, then your bonus amount will be (10-10)×2000/100=0 cents=$0 and the other participant’s bonus
+        amount will be 10×2000/100=200 cents=$2.
+    </p>
+
+    <p>
+        Here is the calculator in which you can input different values for bonus rate, and expected points scored by the
+        other participant to see the bonus amount for yourself and the other participant. Feel free to try different
+        numbers and get the sense of how bonuses are determined.
     </p>
 
         <form method="post" name="earning_calculator" action="form-to-email.php">
@@ -93,21 +179,39 @@
           <input type="hidden" id="value3">
 
           </fieldset>
-        <script>
-            var z = 10-document.getElementById('Line_One').value;
-            document.getElementById('demo').innerHTML = z + "cents for every 100 points.";
-        </script>
 
         </body>
         </form>
 {% else %}
     <p>
-        As explained in the instructions, you will be paid 10 cents for every 100 points scored by some other participant. You
-        can choose to transfer part of these 10 cents to the other participant who will work on a task for 10 minutes.
-        You will also decide if you want to reward the other participant for his/her performance in the task. Before
-        you decide much you want to share with the other participant and whether you want to reward him/her, you may
-        input different numbers in the calculator below to see bonus amounts for yourself and the other participant.
+        <b>Example 1:</b> Suppose you choose 5 cents for the other participant and that participant score 2000 points
+        in 10 minutes, then your bonus amount will be (10-5)×2000/100=100 cents = $1 and the other participant’s bonus amount
+        will be 5×2000/100=100 cents = $1. You will have an option to reward $0.1 (10 percent of your bonus amount) to
+        the other participant, that will make your final bonus amount to be $0.9 while other participant’s bonus
+        amount will be $1.1.
     </p>
+
+    <p>
+        <b>Example 2:</b> Suppose you choose 0 cents for other participant and that participant scores 2000 points,
+        then your bonus amount will be (10-0)×2000/100=200 cents = $2 and the other participant’s bonus amount will
+        be 0×1000/100=0 cents = $0. You will have an option to reward $0.2 (10 percent of your bonus amount)
+        to the other participant, that will make your final bonus amount to be $1.8 while other participant bonus
+        amount will be $0.2.
+    </p>
+
+    <p>
+        <b>Example 3:</b> Similarly, suppose you choose 10 cents for the other participant and that participant again
+        score 2000 points, then your bonus amount will be (10-10)×2000/100=0 cents = $0 and the other participant’s
+        bonus amount will be 10×2000/100=200 cents = $2. You cannot reward any amount in this case because your bonus
+        amount is zero.
+    </p>
+
+    <p>
+        Here is the calculator in which you can input different values for bonus rate, and expected points scored by the
+        other participant to see the bonus amount for yourself and the other participant. Feel free to try different
+        numbers and get the sense of how bonuses are determined.
+    </p>
+
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
             <fieldset>
@@ -198,19 +302,26 @@
 
           </fieldset>
 
+
         </body>
         </form>
+
 {% endif %}
 
-    {% formfield group.piece_rate label = "Now, how much do you want to transfer to the other participant for every 100 points scored by him/her?" %}
-    {% formfield group.guessed_points label = "How many points do you expect the other participant to score in 10 minutes? (This information will not be shared with the other participant)." %}
+<p>
+    Make sure you understand the instructions before proceeding. The next screen will ask you questions to test
+    your understanding of the experiment.
+</p>
 
-{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
-    {% formfield group.target_points label = "How many points should the other participant score to get reward from you? (Enter 0 if you want to always reward the other participant, enter a really large number (such as 9999) if you don't want to reward the other participant.)" %}
-{% else %}
-    <input type="hidden" name="target_points" value="999999" id="id_target_points"/>
-{% endif %}
-
+<p>
+    <b>Description of Task:</b> The object of the task is to alternately press the “a” and “b” buttons on the
+    keyboard as quickly as possible for 10 minutes. Every time the other participant successfully presses the “a”
+    and then the “b” button, he/she will receive a point. Note that points will only be rewarded when the other
+    participant alternate button pushes: just pressing the “a” or the “b” button without alternating between the
+    two will not result in points. Buttons must be pressed by hand only (key-bindings or automated button-pushing
+    programs/scripts cannot be used) or the task will not be approved. The other participant is free to score as
+    many points as he/she can.
+</p>
     {% next_button %}
 
 {% endblock %}

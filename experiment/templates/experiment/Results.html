@@ -10,7 +10,7 @@
 {% if player.id_in_group == 1 %}
     <p>
         Thank you for participating in this experiment, your bonus amount will be determined after the other participant has
-        finished working on the task. Your bonus amount will be paid in 24 hours.
+        finished working on the task. Your bonus amount (if any) will be paid in 24 hours.
     </p>
 {% else %}
 
@@ -26,6 +26,12 @@
         <b>Points Scored</b> = {{group.points}}
     </p>
 
+{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
+    <p>
+        <b>Reward</b> = {% if group.points > group.target_points %} {{reward}} {% else %} 0 {% endif %}
+    </p>
+{% endif %}
+
     <p>
         <b>Your Bonus Payout</b> = {{player.payoff}}
     </p>
@@ -35,7 +41,7 @@
     </p>
 
     <p>
-        Your bonus amount will be paid in 24 hours.
+        Your bonus amount (if any) will be paid in 24 hours.
     </p>
 {% endif %}
 

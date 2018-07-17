@@ -7,6 +7,13 @@
 
 {% block content %}
 
+{% if group.treatment == 'Race Salient' or group.treatment == 'Race Salient & Three Stage' %}
+<figure>
+    <img src="{% static image_path %}" width="250" height="200" align="middle"/>
+    <figcaption><b>Other Participant</b></figcaption>
+</figure>
+{% endif %}
+
     {% formfield group.guessed_piece_rate label="Before you see the chosen bonus rate, select your guess here. This will not have any affect on the rate which is already chosen by the other participant"%}
 
 <p>
