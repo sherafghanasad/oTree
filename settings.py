@@ -11,6 +11,18 @@ import otree.settings
 # the session config can be accessed from methods in your apps as self.session.config,
 # e.g. self.session.config['participation_fee']
 
+mturk_hit_settings = {
+    'keywords': ['bonus', 'study'],
+    'title': 'Title for your experiment',
+    'description': 'Description for your experiment',
+    'frame_height': 500,
+    'preview_template': 'global/MTurkPreview.html',
+    'minutes_allotted_per_assignment': 60,
+    'expiration_hours': 7*24, # 7 days
+    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
+    'qualification_requirements': []
+}
+
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 1.00,
     'participation_fee': 0.00,
@@ -80,30 +92,20 @@ SESSION_CONFIGS = [
     'name': 'demographic_survey',
     'display_name': "Demographic Survey",
     'num_demo_participants': 6,
-    'app_sequence': ['demographic_survey', 'experiment'],
+    'app_sequence': ['demographic_survey'],
     },
-    # {
-    # 'name': 'experiment',
-    # 'display_name': "Experiment",
-    # 'num_demo_participants': 4,
-    # 'app_sequence': ['demographic_survey', 'experiment'],
-    # },
+    {
+    'name': 'experiment',
+    'display_name': "Experiment",
+    'num_demo_participants': 4,
+    'app_sequence': ['experiment'],
+    },
 
     # other session configs go here ...
 ]
 
 
-mturk_hit_settings = {
-    'keywords': ['bonus', 'study'],
-    'title': 'Title for your experiment',
-    'description': 'Description for your experiment',
-    'frame_height': 500,
-    'preview_template': 'global/MTurkPreview.html',
-    'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 7*24, # 7 days
-    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-    'qualification_requirements': []
-}
+
 # see the end of this file for the inactive session configs
 
 
@@ -125,6 +127,15 @@ ROOMS = [
         'name': 'live_demo',
         'display_name': 'Room for live demo (no participant labels)',
     },
+    {
+        'name': 'experiment',
+        'display_name': 'Experiment',
+    },
+    {
+        'name': 'demographic_survey',
+        'display_name': 'Demographic Survey',
+    },
+
 ]
 
 

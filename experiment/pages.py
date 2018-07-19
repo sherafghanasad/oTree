@@ -38,7 +38,16 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 #                 self.player.age == 'Under 18')
 
 # class GroupingWaitPage(WaitPage):
-#     # group_by_arrival_time = True
+#     pass
+    # group_by_arrival_time = True
+
+    # def before_next_page(self):
+    #     self.group.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
+
+    # randomize to treatments
+    #     for g in self.get_groups():
+
+        # print('set group.treatment to', self.group.treatment))
 
 class InstructionsEmployer(Page):
     def is_displayed(self):
@@ -203,19 +212,22 @@ class ResultsWaitPage(WaitPage):
     def is_displayed(self):
         return self.player.id_in_group == 2
 
-# class Results(Page):
-#     pass
+class NormalWaitPage(WaitPage):
+    def is_displayed(self):
+        return self.player.id_in_group == 2
+
 
 page_sequence = [
+    # GroupingWaitPage,
     InstructionsEmployer,
     InstructionsWorker,
     ControlQuestionsEmployer,
     ControlQuestionsWorker,
     EmployerDecision,
+    NormalWaitPage,
     BonusWorker1,
     BonusWorker2,
     Task,
     ResultsWaitPage,
     Results
-
 ]

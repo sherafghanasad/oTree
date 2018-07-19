@@ -39,6 +39,9 @@ class Disqualified(Page):
                 self.player.race != 'White or Caucasian') or
                 self.player.age == 'Under 18')
 
+class Qualified(Page):
+    pass
+
 # class Results(Page):
 #     form_model = models.Player
 #     form_fields = ['delete_photo']
@@ -56,6 +59,7 @@ class Disqualified(Page):
 
 page_sequence = [
     Survey,
-    Disqualified
+    Disqualified,
+    Qualified
     # Results
 ]
