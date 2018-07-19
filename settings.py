@@ -15,6 +15,7 @@ SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 1.00,
     'participation_fee': 0.00,
     'doc': "",
+    'mturk_hit_settings': mturk_hit_settings,
 }
 
 SESSION_CONFIGS = [
@@ -75,22 +76,34 @@ SESSION_CONFIGS = [
     # 'num_demo_participants': 6,
     # 'app_sequence': ['gift_exchange'],
     # },
-    # {
-    # 'name': 'demographic_survey',
-    # 'display_name': "Demographic Survey",
-    # 'num_demo_participants': 3,
-    # 'app_sequence': ['demographic_survey'],
-    # },
     {
-    'name': 'experiment',
-    'display_name': "Experiment",
-    'num_demo_participants': 4,
+    'name': 'demographic_survey',
+    'display_name': "Demographic Survey",
+    'num_demo_participants': 6,
     'app_sequence': ['demographic_survey', 'experiment'],
     },
+    # {
+    # 'name': 'experiment',
+    # 'display_name': "Experiment",
+    # 'num_demo_participants': 4,
+    # 'app_sequence': ['demographic_survey', 'experiment'],
+    # },
 
     # other session configs go here ...
 ]
 
+
+mturk_hit_settings = {
+    'keywords': ['bonus', 'study'],
+    'title': 'Title for your experiment',
+    'description': 'Description for your experiment',
+    'frame_height': 500,
+    'preview_template': 'global/MTurkPreview.html',
+    'minutes_allotted_per_assignment': 60,
+    'expiration_hours': 7*24, # 7 days
+    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
+    'qualification_requirements': []
+}
 # see the end of this file for the inactive session configs
 
 
@@ -132,6 +145,8 @@ ADMIN_USERNAME = 'admin'
 # for security, best to set admin password in an environment variable
 ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
 
+AWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 # Consider '', None, and '0' to be empty/false
 DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})
