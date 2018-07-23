@@ -162,7 +162,10 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 # Consider '', None, and '0' to be empty/false
 DEBUG = (environ.get('OTREE_PRODUCTION') in {None, '', '0'})
 
+SENTRY_DSN = environ.get('SENTRY_DSN')
+
 DEMO_PAGE_INTRO_HTML = """
+
 <ul>
     <li>
         <a href="https://github.com/oTree-org/otree" target="_blank">
