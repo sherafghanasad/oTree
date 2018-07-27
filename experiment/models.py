@@ -23,7 +23,8 @@ class Subsession(BaseSubsession):
     def creating_session(self):
         # randomize to treatments
         for g in self.get_groups():
-            g.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
+            # g.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
+            g.treatment = random.choice(['Baseline', 'Race Salient'])
             print('set group.treatment to', g.treatment)
 
     # group_by_arrival_time = True
@@ -33,11 +34,15 @@ class Group(BaseGroup):
     treatment = models.StringField()
 
     piece_rate = models.CurrencyField(
-        choices=currency_range(0, 0.1, 0.01)
+        choices=currency_range(0, 0.1, 0.03)
     )
 
     guessed_piece_rate = models.CurrencyField(
-        choices=currency_range(0, 0.1, 0.01)
+        choices=currency_range(0, 0.1, 0.03)
+    )
+
+    fair_piece_rate = models.CurrencyField(
+        choices=currency_range(0, 0.1, 0.03)
     )
 
     points = models.IntegerField(default='0')
@@ -115,3 +120,6 @@ class Player(BasePlayer):
         choices=[True, False]
     )
 
+    Feedback = models.LongStringField(
+        blank=True
+    )

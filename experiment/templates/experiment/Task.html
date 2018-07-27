@@ -9,13 +9,13 @@
 
     <p> Press 'a' then 'b'</p>
 
-	<center><p><h1>Points: <span id="points">0</span></h1></p></center>
-    <p><h4>Your Bonus Payout: $ <span id="bonus"></span></h4><p>
-    <p><h4>Other Participant Bonus Payout: $ <span id="obonus"></span></h4></p>
+	<p><h1>Points: <span id="points">0</span></h1></p>
+    <p><h4>Your bonus payout: $ <span id="bonus"></span></h4><p>
+    <p><h4>Your team member's bonus payout: $ <span id="obonus"></span></h4></p>
 
     <input type="hidden" name="points" value="0" id="id_points"/>
 
-    <p> <u><b>The other participant has chosen a bonus rate of {{group.piece_rate}}/100 points for you and {{other_bonus}}/100 points for himself/herself. </b></u></p>
+    <p> <u><b>Your team member has chosen a bonus of {{group.piece_rate}}/100 points for you and {{other_bonus}}/100 points for himself/herself. </b></u></p>
 
 <script>
   const target = document.getElementById('points');

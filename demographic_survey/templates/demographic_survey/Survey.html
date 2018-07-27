@@ -1,5 +1,6 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
+{% load static otree %}
 
 {% block title %}
     Enter your information
@@ -11,34 +12,39 @@
 
     {% formfield player.mturkid label="MTurk Worker ID" %}
 
-    {% formfield player.gender label="Gender that you closely identify with" %}
+    {% formfield player.gender label="Gender you closely identify with" %}
 
-    {% formfield player.race label="Race that you closely identify with" %}
+    {% formfield player.race label="Race you closely identify with" %}
 
     {% formfield player.age label="How old are you" %}
 
     {% formfield player.education label="Highest education level reached" %}
 
 <p>
-    Take a clearly visible picture of your face using your webcam. Make sure you follow the following guidelines when
-    taking a photo;
-</p>
-<p>
-    1. Your head must face the camera directly with full face in view.
+    Use your web-camera to take a picture that is as close as possible to the sample picture shown
+    below. Make sure you follow these guidelines when taking a photo;
 </p>
 
 <p>
-    2. You must have a neutral facial expression or a natural smile, with both eyes open.
-</p>
-<p>
-    3. Taken in clothing normally worn on a daily basis.
-</p>
-<p>
-    4. Use a plain white or off-white background.
+    1. Your face must NOT be visible in the picture.
 </p>
 
 <p>
-    You can take multiple photos, click next when you are satisfied with the picture shown on the right.
+    2. You must NOT show any jewelry/watches/tattoos/markings etc. on the picture.
+</p>
+
+<p>
+    3. Use a plain background.
+</p>
+<figure>
+    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
+       <img src="{% static '/demographic_survey/SamplePhoto.jpg' %}" width="350px" height="220px" alt="Sample Picture" title="Sample Picture">
+    </a>
+    <figcaption><b>Sample Picture</b></figcaption>
+</figure>
+
+<p>
+    You may take multiple photos, click next only when you are satisfied with the picture shown on the right.
     <b>Your HIT may NOT be approved if your photo does not meet one or more of the above guidelines. </b>
 </p>
 

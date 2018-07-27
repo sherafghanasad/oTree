@@ -13,10 +13,10 @@
 
     {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
     {% formfield player.Question8 label="2.	Who has selected a bonus rate for you" %}
-    {% formfield player.Question2 label="3. What is the lowest bonus rate that could have been selected by the other participant (in cents)?" %}
-    {% formfield player.Question3 label="4. What is the maximum bonus rate that could have been selected by the other participant (in cents)?" %}
-    {% formfield player.Question4 label="5.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
-    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for the other participant." %}
+    {% formfield player.Question2 label="3. What is the lowest bonus that could have been selected by your team member (in cents per 100 points)?" %}
+    {% formfield player.Question3 label="4. What is the maximum bonus that could have been selected by your team member (in cents per 100 points)?" %}
+    {% formfield player.Question4 label="5.	Higher points in a task lead to higher bonus payment for both you and your team member for any positive bonus rate." %}
+    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for your team member." %}
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
     {% formfield player.Question9 label="7.	The other participant may reward your effort depending on how many points you score on the task." %}

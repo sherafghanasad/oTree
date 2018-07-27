@@ -24,8 +24,15 @@
     Bonus Rate = {{group.piece_rate}} per 100 points scored
 </h1>
 
+    {% formfield group.fair_piece_rate label="According to you, what would have been the fair bonus that your team member could have selected?" %}
+
+<p>
+    Now, when you are ready click next to start working on the button-pressing task for next 10 minutes. You are free to
+    score as many points as you can.
+</p>
+
     <button>
-        Next
+        Start the button-pressing task
     </button>
 
 {% endblock %}

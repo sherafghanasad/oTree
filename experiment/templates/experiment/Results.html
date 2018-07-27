@@ -9,9 +9,14 @@
 
 {% if player.id_in_group == 1 %}
     <p>
-        Thank you for participating in this experiment, your bonus amount will be determined after the other participant has
+        Thank you for participating in this experiment, your bonus amount will be determined after your team member has
         finished working on the task. Your bonus amount (if any) will be paid in 24 hours.
+
+        Please note that any bonus payment must be approved before they are given.
     </p>
+
+    {% formfield player.Feedback label="Did you have any questions, concerns or comments about this study? If so, enter them here. " %}
+
 {% else %}
 
     <p>
@@ -19,11 +24,11 @@
     </p>
 
     <p>
-        <b>Bonus Rate</b> = {{group.piece_rate}} per 100 points scored
+        <b>Bonus rate</b> = {{group.piece_rate}} per 100 points scored
     </p>
 
     <p>
-        <b>Points Scored</b> = {{group.points}}
+        <b>Points</b> = {{group.points}}
     </p>
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
@@ -33,17 +38,25 @@
 {% endif %}
 
     <p>
-        <b>Your Bonus Payout</b> = {{player.payoff}}
+        <b>Your bonus payout</b> = {{player.payoff}}
     </p>
 
     <p>
-        <b>Other Participant Bonus Payout</b> = {{player.get_partner.payoff}}
+        <b>Your team member's bonus payout</b> = {{player.get_partner.payoff}}
     </p>
 
     <p>
         Your bonus amount (if any) will be paid in 24 hours.
     </p>
+
+        Please note that any bonus payment must be approved before they are given.
+
+
+    {% formfield player.Feedback label="Did you have any questions, concerns or comments about this study? If so, enter them here. " %}
+
 {% endif %}
+
+    {% next_button %}
 
 {% endblock %}
 

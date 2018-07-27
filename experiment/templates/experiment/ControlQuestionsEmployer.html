@@ -8,14 +8,14 @@
 {% block content %}
 
 <p>
-    Answer the following questions before you can proceed with the experiment.
+    Answer the following questions correctly before you can proceed with the experiment.
 </p>
 
     {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
-    {% formfield player.Question2 label="2. What is the lowest bonus rate that you can select for other participant (in cents)?" %}
-    {% formfield player.Question3 label="3. What is the maximum bonus rate that you can select for other participant (in cents)?" %}
-    {% formfield player.Question4 label="4.	Higher points in a task lead to higher bonus payment for both participants for a given bonus rates." %}
-    {% formfield player.Question5 label="5.	Higher bonus rate for one participant means lower bonus rate for another." %}
+    {% formfield player.Question2 label="2. What is the lowest bonus that you can select for your team member (in cents per 100 points)?" %}
+    {% formfield player.Question3 label="3. What is the maximum bonus that you can select for your team member (in cents per 100 points)?" %}
+    {% formfield player.Question4 label="4.	Higher points in a task lead to higher bonus payment for both you and your team member for any positive bonus rate." %}
+    {% formfield player.Question5 label="5.	Higher bonus rate for your team member means lower bonus rate for you." %}
 
 <p>
     <b>For following questions feel free to use the bonus calculator </b>
@@ -23,6 +23,7 @@
 </p>
 
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
+
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
             <fieldset>
@@ -33,7 +34,7 @@
           <tbody>
             <tr>
             <tr>
-              <th scope="col">Bonus rate for other participant (per 100 points scored)</th>
+              <th scope="col">Bonus rate for your team member (per 100 points scored)</th>
 
               <td>$<select id="Line_One" name="Line_One" onchange="
               document.getElementById('value1').value=this.value;
@@ -42,16 +43,16 @@
               document.getElementById('value3').value=Math.round((0.1-document.getElementById('value1').value)*100)/100">
                   <option value=""> Select here </option>
                   <option value="0"> 0 </option>
-                  <option value="0.01"> 0.01 </option>
-                  <option value="0.02"> 0.02 </option>
+                  <!--<option value="0.01"> 0.01 </option>-->
+                  <!--<option value="0.02"> 0.02 </option>-->
                   <option value="0.03"> 0.03 </option>
-                  <option value="0.04"> 0.04 </option>
-                  <option value="0.05"> 0.05 </option>
+                  <!--<option value="0.04"> 0.04 </option>-->
+                  <!--<option value="0.05"> 0.05 </option>-->
                   <option value="0.06"> 0.06 </option>
-                  <option value="0.07"> 0.07 </option>
-                  <option value="0.08"> 0.08 </option>
+                  <!--<option value="0.07"> 0.07 </option>-->
+                  <!--<option value="0.08"> 0.08 </option>-->
                   <option value="0.09"> 0.09 </option>
-                  <option value="0.1"> 0.10 </option>
+                  <!--<option value="0.1"> 0.10 </option>-->
                 </select></td>
             </tr>
             <tr>
@@ -60,31 +61,31 @@
                 </th>
                 <td>
 
-                  $<input type="text" id="value3" name="" placeholder="Change bonus rate for other participant to change this" disabled>
+                  $<input type="text" id="value3" name="" placeholder="Auto Calculated" disabled>
               </td>
             </tr>
             <tr>
-              <th scope="col">Points Scored by the other participant</th>
+              <th scope="col">Points scored by your team member</th>
               <td><input style="border:none" type="numeric" id="Line_Two" name="Line_Two" onchange=
               "document.getElementById('value2').value=this.value;
               document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;
-              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Enter numeric value here">
+              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Your guess">
               </td>
             </tr>
           <tr>
               <th>
-                  <label for="e_earning">Your Bonus Amount</label>
+                  <label for="e_earning">Your bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           <tr>
               <th>
-                  <label for="w_earning">Other participant's Bonus Amount</label>
+                  <label for="w_earning">Your team member's bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           </tbody>
@@ -101,20 +102,20 @@
         </body>
         </form>
     <p>
-        6. Suppose you selected a bonus rate of “0 cents for every 100 points”, the other participant
+        6. Suppose you selected a bonus rate of “0 cents for every 100 points”, your team member
         scored 1500 points then;
     </p>
 
-        {% formfield player.Question6E label="What will be your's bonus amount (in dollars)?" %}
-        {% formfield player.Question6W label="What will be the other participant's bonus amount (in dollars)?" %}
+        {% formfield player.Question6E label="What will be your bonus amount (in dollars)?" %}
+        {% formfield player.Question6W label="What will be your team member's bonus amount (in dollars)?" %}
 
     <p>
-        7. Suppose you selected a bonus rate of “6 cents for every 100 points”, the other participant
+        7. Suppose you selected a bonus rate of “6 cents for every 100 points”, your team member
         scored 2000 points then;
     </p>
 
-        {% formfield player.Question7E label="What will be your's bonus amount (in dollars)?" %}
-        {% formfield player.Question7W label="What will be the other participant's bonus amount (in dollars)?" %}
+        {% formfield player.Question7E label="What will be your bonus amount (in dollars)?" %}
+        {% formfield player.Question7W label="What will be your team member's bonus amount (in dollars)?" %}
 {% else %}
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
@@ -215,7 +216,7 @@
         scored 1500 points and you decided NOT to reward the other participant then;
     </p>
 
-        {% formfield player.Question6E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question6E label="What will be your bonus amount (in dollars)?" %}
         {% formfield player.Question6W label="What will be the other participant's bonus amount (in dollars)?" %}
 
     <p>
@@ -223,11 +224,13 @@
         scored 2000 points and you decided to reward the other participant then;
     </p>
 
-        {% formfield player.Question7E label="What will be your's bonus amount (in dollars)?" %}
+        {% formfield player.Question7E label="What will be your bonus amount (in dollars)?" %}
         {% formfield player.Question7W label="What will be the other participant's bonus amount (in dollars)?" %}
 {% endif %}
 
-
+<p>
+    The next screen will ask you to select a bonus rate for your team member. Click next when you are ready.
+</p>
     {% next_button %}
 
     {% include 'experiment/InstructionsEmployer.html' %}

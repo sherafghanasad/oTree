@@ -9,15 +9,26 @@
 {% block content %}
 
 <p>
-    Welcome to our economics experiment! Please read the following instructions very carefully.
+    Welcome! Please read the following instructions very carefully.
+</p>
+
+<p>
+    In this study, you and another participant have been matched together to form a two-member team. Your team member
+    will work on a button-pressing task to be described below. Each of you will earn $1 simply
+    for participating in this study. You may each earn additional amount as bonus based on the decisions you and your
+    team member take. All earnings will be transferred to your accounts within 24 hours.
 </p>
 
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
     <p>
-        Your task is to <b>select a bonus rate for another participant</b> who will work on a simple button-pressing task
-        (details of button-pressing task are given below). Both you and the other participant will be paid 1 dollar
-        just for participating in this study, you both can earn additional bonus amount depending upon the decisions in
-        this experiment. The bonuses will be paid in 24 hours.
+        Your specific task is to <b>select a bonus rate for your team member</b>. Once a bonus rate is set, your team
+        member will work on the button-pressing task (at the selected bonus rate). You will be paid 10 cents
+        for every 100 points scored by your team member. You will choose how much of these 10 cents you want to pay
+        to your team member as bonus before he/she starts the task. Specifically, you can choose 0, 3, 6 or 9 cents
+        per 100 points for your team member. Of course, the bigger the bonus you choose for your team
+        member, the less your own bonus will be. You would want to try and incentivize your team member to score as
+        many points as possible. It is possible for your team member to stop working before the 10-minute mark is up.
+        It is also possible that he/she does not score any points at all!.
     </p>
 {% else %}
     <p>
@@ -29,12 +40,6 @@
     </p>
 {% endif %}
 
-<p>
-    You will be paid a bonus of <b>10 cents for every 100 points scored by that other participant</b>. You can choose to
-    <b>transfer part of these 10 cents to that participant</b> (in increments of 1 cent) which will serve as a bonus payment
-    for him/her for every 100 points that he/she scores. The other participant will have 10 minutes to work on the
-    task.
-</p>
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
     <p>
@@ -46,21 +51,21 @@
 
 {% if group.treatment == 'Baseline' or group.treatment == 'Three Stage' %}
     <p>
-        The other participant will not know anything about your identity and will only see the bonus rate selected by
+        Your team member will not know anything about your identity and will only see the bonus rate selected by
         you before starting to work on the task.
     </p>
 {% else %}
     <p>
-        The other participant will see your picture and the bonus rate selected by you before starting to work on the task.
+        Your team member will see your picture and the bonus rate selected by you before starting to work on the task.
     </p>
 {% endif %}
 
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
     <p>
         <b>
-            To summarize, you will select a bonus rate for another participant, another participant will observe what you have
-            chosen and will then work on a button pressing task for 10 minutes. Bonus payments will be determined once the
-            other participant has finished working on the task.
+            To summarize, all you will need to do is select a bonus rate for your team member who will observe what
+            you have chosen before starting work on the button-pressing task. Bonus payments will be determined once
+            your team member has finished working on the task.
         </b>
     </p>
 {% else %}
@@ -76,28 +81,33 @@
 {% endif %}
 
 <p>
-    Here are few examples of how bonuses for you and the other participant will be calculated.
+    Here is one EXAMPLE of what can happen in the experiment.
 </p>
+<figure>
+    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
+       <img src="{% static '/experiment/ExampleEmployer.png' %}" width="900px" height="400px" alt="Example" title="Example">
+    </a>
+    <figcaption><b>Example</b></figcaption>
+</figure>
+<!--{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}-->
 
-{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
+    <!--<p>-->
+        <!--<b>Example 1:</b> Suppose you choose 5 cents for the other participant and that participant score 2000 points in-->
+        <!--10 minutes, then your bonus amount will be (10-5)×2000/100=100 cents=$1 and the other participant’s bonus amount-->
+        <!--will be 5×2000/100=100 cents=$1.-->
+    <!--</p>-->
 
-    <p>
-        <b>Example 1:</b> Suppose you choose 5 cents for the other participant and that participant score 2000 points in
-        10 minutes, then your bonus amount will be (10-5)×2000/100=100 cents=$1 and the other participant’s bonus amount
-        will be 5×2000/100=100 cents=$1.
-    </p>
+    <!--<p>-->
+        <!--<b>Example 2:</b> Suppose you choose 0 cents for other participant and that participant scores 2000 points, then-->
+        <!--your bonus amount will be (10-0)×2000/100=200 cents=$2 and the other participant’s bonus amount will be-->
+        <!--0×2000/100=0 cent=$0.-->
+    <!--</p>-->
 
-    <p>
-        <b>Example 2:</b> Suppose you choose 0 cents for other participant and that participant scores 2000 points, then
-        your bonus amount will be (10-0)×2000/100=200 cents=$2 and the other participant’s bonus amount will be
-        0×2000/100=0 cent=$0.
-    </p>
-
-    <p>
-        <b>Example 3:</b> Similarly, suppose you choose 10 cents for the other participant and that participant again
-        score 2000 points, then your bonus amount will be (10-10)×2000/100=0 cents=$0 and the other participant’s bonus
-        amount will be 10×2000/100=200 cents=$2.
-    </p>
+    <!--<p>-->
+        <!--<b>Example 3:</b> Similarly, suppose you choose 10 cents for the other participant and that participant again-->
+        <!--score 2000 points, then your bonus amount will be (10-10)×2000/100=0 cents=$0 and the other participant’s bonus-->
+        <!--amount will be 10×2000/100=200 cents=$2.-->
+    <!--</p>-->
 
     <p>
         Here is the calculator in which you can input different values for bonus rate, and expected points scored by the
@@ -115,7 +125,7 @@
           <tbody>
             <tr>
             <tr>
-              <th scope="col">Bonus rate for other participant (per 100 points scored)</th>
+              <th scope="col">Bonus rate for your team member (per 100 points scored)</th>
 
               <td>$<select id="Line_One" name="Line_One" onchange="
               document.getElementById('value1').value=this.value;
@@ -124,16 +134,16 @@
               document.getElementById('value3').value=Math.round((0.1-document.getElementById('value1').value)*100)/100">
                   <option value=""> Select here </option>
                   <option value="0"> 0 </option>
-                  <option value="0.01"> 0.01 </option>
-                  <option value="0.02"> 0.02 </option>
+                  <!--<option value="0.01"> 0.01 </option>-->
+                  <!--<option value="0.02"> 0.02 </option>-->
                   <option value="0.03"> 0.03 </option>
-                  <option value="0.04"> 0.04 </option>
-                  <option value="0.05"> 0.05 </option>
+                  <!--<option value="0.04"> 0.04 </option>-->
+                  <!--<option value="0.05"> 0.05 </option>-->
                   <option value="0.06"> 0.06 </option>
-                  <option value="0.07"> 0.07 </option>
-                  <option value="0.08"> 0.08 </option>
+                  <!--<option value="0.07"> 0.07 </option>-->
+                  <!--<option value="0.08"> 0.08 </option>-->
                   <option value="0.09"> 0.09 </option>
-                  <option value="0.1"> 0.10 </option>
+                  <!--<option value="0.1"> 0.10 </option>-->
                 </select></td>
             </tr>
             <tr>
@@ -142,31 +152,31 @@
                 </th>
                 <td>
 
-                  $<input type="text" id="value3" name="" placeholder="Change bonus rate for other participant to change this" disabled>
+                  $<input type="text" id="value3" name="" placeholder="Auto Calculated" disabled>
               </td>
             </tr>
             <tr>
-              <th scope="col">Points Scored by the other participant</th>
+              <th scope="col">Points scored by your team member</th>
               <td><input style="border:none" type="numeric" id="Line_Two" name="Line_Two" onchange=
               "document.getElementById('value2').value=this.value;
               document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;
-              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Enter numeric value here">
+              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Your guess">
               </td>
             </tr>
           <tr>
               <th>
-                  <label for="e_earning">Your Bonus Amount</label>
+                  <label for="e_earning">Your bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           <tr>
               <th>
-                  <label for="w_earning">Other participant's Bonus Amount</label>
+                  <label for="w_earning">Your team member's bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           </tbody>
@@ -309,11 +319,6 @@
 {% endif %}
 
 <p>
-    Make sure you understand the instructions before proceeding. The next screen will ask you questions to test
-    your understanding of the experiment.
-</p>
-
-<p>
     <b>Description of Task:</b> The object of the task is to alternately press the “a” and “b” buttons on the
     keyboard as quickly as possible for 10 minutes. Every time the other participant successfully presses the “a”
     and then the “b” button, he/she will receive a point. Note that points will only be rewarded when the other
@@ -321,6 +326,42 @@
     two will not result in points. Buttons must be pressed by hand only (key-bindings or automated button-pushing
     programs/scripts cannot be used) or the task will not be approved. The other participant is free to score as
     many points as he/she can.
+</p>
+
+<p>
+    Below is an example of how the task will work. Try pressing "a" and "b" alternately to score points. We have
+    limited the point below to a maximum of 30 as this is just for you to get the idea of the task. Your team member
+    will be free to score as many points as he/she can in 10 minutes.
+</p>
+
+
+<p> Press 'a' then 'b'</p>
+
+<p><h1>Points: <span id="points">0</span></h1></p>
+
+<script>
+  const target = document.getElementById('points');
+  // const btarget = document.getElementById('bonus');
+  // const obtarget = document.getElementById('obonus');
+
+  var points = 0;
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'a' || event.key === 'A') x = true;
+        if (event.key === 'b' || event.key === 'B') {
+            if (!x) return;
+            if (points<30) {
+                target.textContent = ++points;
+                x = false;
+            }
+        }
+    });
+
+</script>
+
+<p>
+    Make sure you understand the instructions before proceeding. The next screen will ask you questions to test
+    your understanding of the experiment.
 </p>
     {% next_button %}
 

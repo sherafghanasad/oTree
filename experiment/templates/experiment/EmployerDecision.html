@@ -13,10 +13,10 @@
 {% block content %}
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
     <p>
-        As explained in the instructions, you will be paid 10 cents for every 100 points scored by some other participant. You
-        can choose to transfer part of these 10 cents to the other participant who will work on a task for 10 minutes. Before
-        you decide much you want to share with the other participant, you may input different numbers in the calculator
-        below to see bonus amounts for yourself and the other participant.
+        As explained before, you will be paid 10 cents for every 100 points scored by your team member. You
+        can choose to transfer part of these 10 cents to your team member who will work on a task for 10 minutes. Before
+        you decide much you want to share with the other participant, you may once again input different numbers in the calculator
+        below to see bonus amounts for yourself and your team member.
     </p>
 
         <form method="post" name="earning_calculator" action="form-to-email.php">
@@ -29,7 +29,7 @@
           <tbody>
             <tr>
             <tr>
-              <th scope="col">Bonus rate for other participant (per 100 points scored)</th>
+              <th scope="col">Bonus rate for your team member (per 100 points scored)</th>
 
               <td>$<select id="Line_One" name="Line_One" onchange="
               document.getElementById('value1').value=this.value;
@@ -38,16 +38,16 @@
               document.getElementById('value3').value=Math.round((0.1-document.getElementById('value1').value)*100)/100">
                   <option value=""> Select here </option>
                   <option value="0"> 0 </option>
-                  <option value="0.01"> 0.01 </option>
-                  <option value="0.02"> 0.02 </option>
+                  <!--<option value="0.01"> 0.01 </option>-->
+                  <!--<option value="0.02"> 0.02 </option>-->
                   <option value="0.03"> 0.03 </option>
-                  <option value="0.04"> 0.04 </option>
-                  <option value="0.05"> 0.05 </option>
+                  <!--<option value="0.04"> 0.04 </option>-->
+                  <!--<option value="0.05"> 0.05 </option>-->
                   <option value="0.06"> 0.06 </option>
-                  <option value="0.07"> 0.07 </option>
-                  <option value="0.08"> 0.08 </option>
+                  <!--<option value="0.07"> 0.07 </option>-->
+                  <!--<option value="0.08"> 0.08 </option>-->
                   <option value="0.09"> 0.09 </option>
-                  <option value="0.1"> 0.10 </option>
+                  <!--<option value="0.1"> 0.10 </option>-->
                 </select></td>
             </tr>
             <tr>
@@ -56,31 +56,31 @@
                 </th>
                 <td>
 
-                  $<input type="text" id="value3" name="" placeholder="Change bonus rate for other participant to change this" disabled>
+                  $<input type="text" id="value3" name="" placeholder="Auto Calculated" disabled>
               </td>
             </tr>
             <tr>
-              <th scope="col">Points Scored by the other participant</th>
+              <th scope="col">Points scored by your team member</th>
               <td><input style="border:none" type="numeric" id="Line_Two" name="Line_Two" onchange=
               "document.getElementById('value2').value=this.value;
               document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;
-              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Enter numeric value here">
+              document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Your guess">
               </td>
             </tr>
           <tr>
               <th>
-                  <label for="e_earning">Your Bonus Amount</label>
+                  <label for="e_earning">Your bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           <tr>
               <th>
-                  <label for="w_earning">Other participant's Bonus Amount</label>
+                  <label for="w_earning">Your team member's bonus amount</label>
               </th>
               <td>
-                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Enter points scored to see this" disabled>
+                  $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Auto Calculated" disabled>
               </td>
           </tr>
           </tbody>
@@ -93,10 +93,6 @@
           <input type="hidden" id="value3">
 
           </fieldset>
-        <script>
-            var z = 10-document.getElementById('Line_One').value;
-            document.getElementById('demo').innerHTML = z + "cents for every 100 points.";
-        </script>
 
         </body>
         </form>
@@ -202,8 +198,8 @@
         </form>
 {% endif %}
 
-    {% formfield group.piece_rate label = "Now, how much do you want to transfer to the other participant for every 100 points scored by him/her?" %}
-    {% formfield group.guessed_points label = "How many points do you expect the other participant to score in 10 minutes? (This information will not be shared with the other participant)." %}
+    {% formfield group.piece_rate label = "Now, how much do you want to transfer to your team member for every 100 points scored by him/her?" %}
+    {% formfield group.guessed_points label = "How many points do you expect your team member to score in 10 minutes? You will be paid extra 5 cents if your guess is within the range of 100 points of the actual points scored." %}
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
     {% formfield group.target_points label = "How many points should the other participant score to get reward from you? (Enter 0 if you want to always reward the other participant, enter a really large number (such as 9999) if you don't want to reward the other participant.)" %}

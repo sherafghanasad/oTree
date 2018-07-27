@@ -8,21 +8,22 @@
 {% block content %}
 
 <p>
-    Welcome to our economics experiment! Please read the following instructions very carefully.
+    Welcome! Please read the following instructions very carefully.
 </p>
 
 <p>
-    Your task is to work on a simple button-pressing task for 10 minutes at <b>bonus rate selected by another participant</b>
-    (details of button-pressing task are given below). Both you and the other participant will be paid 1 dollar just
+    In this study, you and another participant have been matched together to form a two-member team. Your task is to
+    work on a simple button-pressing task for 10 minutes at <b>bonus rate selected by your team member</b>
+    (details of button-pressing task are given below). Both you and your team member will be paid 1 dollar just
     for participating in this study, you both can earn additional bonus amount depending on the decisions in this
     experiment. The bonuses will be paid in 24 hours.
 </p>
 
 <p>
-    The other participant could select <b>any rate between 0 cents and 10 cents for every 100 points scored</b> by you in
-    the task. In the next screen you will see the bonus rate selected by the other participant and you will then work
-    on a task for 10 minutes. While you will earn a bonus of x cents for every 100 points that you score, the other
-    participant will receive (10-x) cents as a bonus for every 100 points scored by you.
+    Your team member could select any bonus rate from 0, 3, 6 or 9 cents for every 100 points scored by you in
+    the task. In the next screen you will see the bonus rate selected by your team member and you will then work
+    on a task for 10 minutes. While you will earn a bonus of x cents for every 100 points that you score, your team
+    member will receive (10-x) cents as a bonus for every 100 points scored by you.
 </p>
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
@@ -33,14 +34,14 @@
 {% endif %}
 
 <p>
-    The other participant did not know anything about your identity when he/she chose the bonus rate for you and will
+    Your team member did not know anything about your identity when he/she chose the bonus rate for you and will
     only observe the points scored by you after you have finished working on the task.
 </p>
 
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
     <p>
         <b>
-            To summarize, the other participant has selected a bonus rate between 0 and 10 cents for every 100 points
+            To summarize, your team member has selected a bonus rate of 0, 3, 6 or 9 cents for every 100 points
             scored by you. In the next screen you will see the bonus rate selected and you will then work on a button
             pressing task for 10 minutes. Bonus payments will be determined once you have finished working on the task.
         </b>
@@ -58,6 +59,16 @@
 {% endif %}
 
 <p>
+    Here is one EXAMPLE of what can happen in the experiment.
+</p>
+<figure>
+    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
+       <img src="{% static '/experiment/ExampleWorker.png' %}" width="900px" height="400px" alt="Example" title="Example">
+    </a>
+    <figcaption><b>Example</b></figcaption>
+</figure>
+
+<p>
     <h5>Description of the Task:</h5> The object of the task is to alternately press the “a” and “b” buttons on the
     keyboard as quickly as possible for 10 minutes. Every time you successfully press the “a” and then the “b” button,
     you will receive a point. Note that points will only be rewarded when you alternate button pushes: just pressing
@@ -67,10 +78,39 @@
 </p>
 
 <p>
+    Below is an example of how the task will work. Try pressing "a" and "b" alternately to score points. We have
+    limited the point below to a maximum of 10 as this is just practice, but the actual task will not have a limit.
+</p>
+
+
+<p> Press 'a' then 'b'</p>
+
+<p><h1>Points: <span id="points">0</span></h1></p>
+
+<script>
+  const target = document.getElementById('points');
+  // const btarget = document.getElementById('bonus');
+  // const obtarget = document.getElementById('obonus');
+
+  var points = 0;
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'a' || event.key === 'A') x = true;
+        if (event.key === 'b' || event.key === 'B') {
+            if (!x) return;
+            if (points<10) {
+                target.textContent = ++points;
+                x = false;
+            }
+        }
+    });
+
+</script>
+
+<p>
     Make sure you understand the instructions before proceeding. The next screen will ask you questions to test
     your understanding of the experiment.
 </p>
-
     {% next_button %}
 
 {% endblock %}

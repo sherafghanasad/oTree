@@ -2,6 +2,8 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
+from otree_tools.fields import OtherModelField
+# from .fields import OtherModelField
 from django.db import models as django_models
 import random
 
@@ -29,22 +31,22 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     mturkid = models.StringField()
-    gender = models.StringField(
-        choices=['Male', 'Female', 'Other', 'Prefer not to answer'],
-        widget=widgets.RadioSelect
+    gender = OtherModelField(
+        choices=['Male', 'Female'],
+        # widget=widgets.RadioSelect
     )
-    race = models.StringField(
-        choices=['American Indian or Alaskan Native', 'Asian', 'Black or African-American', 'Native Hawaiian or other Pacific Islander',
-                 'White or Caucasian', 'Other',  'Prefer not to answer'],
-        widget=widgets.RadioSelect
+    race = OtherModelField(
+        choices=['American Indian or Alaskan Native', 'Asian', 'Black or African-American', 'Hispanic or Latino',
+                 'Native Hawaiian or other Pacific Islander', 'White or Caucasian'],
     )
     age = models.StringField(
-        choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over', 'Prefer not to answer'],
+        choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over'],
         widget=widgets.RadioSelect
     )
-    education = models.StringField(
-        choices=['High School', 'College', 'Graduate School', 'Other', 'Prefer not to answer'],
-        widget=widgets.RadioSelect
+    education = OtherModelField(
+        choices=['Less than high school', 'High School or equivalent', 'Vocational/Technical School', 'Some College',
+                 'College Graduate', "Master's Degree", 'Doctoral Degree', 'Professional Degree'],
+        # widget=widgets.RadioSelect
     )
     testimage = django_models.TextField()
     delete_photo = models.BooleanField()

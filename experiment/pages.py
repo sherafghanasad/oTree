@@ -86,7 +86,7 @@ class ControlQuestionsEmployer(Page):
             return ['That was incorrect, please reread the instructions and then try again.']
 
     def Question3_error_message(self, value):
-        if not (value == 10):
+        if not (value == 9):
             return ['That was incorrect, please reread the instructions and then try again.']
 
     def Question4_error_message(self, value):
@@ -134,7 +134,7 @@ class ControlQuestionsWorker(Page):
             return ['That was incorrect, please reread the instructions and then try again.']
 
     def Question3_error_message(self, value):
-        if not (value == 10):
+        if not (value == 9):
             return ['That was incorrect, please reread the instructions and then try again.']
 
     def Question4_error_message(self, value):
@@ -177,6 +177,18 @@ class BonusWorker2(Page):
             'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().participant.code)
         }
 
+class BonusWorker3(Page):
+    form_model = 'group'
+    form_fields = ['guessed_piece_rate', 'fair_piece_rate']
+
+    def is_displayed(self):
+        return self.player.id_in_group == 2
+
+    def vars_for_template(self):
+        return {
+            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().participant.code)
+        }
+
 class Task(Page):
     form_model = 'group'
     form_fields = ['points']
@@ -191,6 +203,9 @@ class Task(Page):
 
 
 class Results(Page):
+    form_model = 'player'
+    form_fields = ['Feedback']
+
     def vars_for_template(self):
         return {'reward': (0.1*((0.1 - self.group.piece_rate)*(self.group.points/100)))}
 
@@ -201,12 +216,22 @@ class ResultsWaitPage(WaitPage):
         p1 = group.get_player_by_id(1)
         p2 = group.get_player_by_id(2)
 
-        if group.points < group.target_points:
-            p1.payoff = (0.10-group.piece_rate) * (group.points/100)
-            p2.payoff = group.piece_rate * (group.points/100)
+        if abs(group.guessed_points-group.points)<=50:
+            p1.payoff = ((0.10 - group.piece_rate) * (group.points / 100)) + 0.05
         else:
-            p1.payoff = 0.9*((0.10-group.piece_rate) * (group.points/100))
-            p2.payoff = (group.piece_rate * (group.points/100))+(0.1*((0.10-group.piece_rate) * (group.points/100)))
+            p1.payoff = (0.10 - group.piece_rate) * (group.points / 100)
+
+        if group.guessed_piece_rate == group.piece_rate:
+            p2.payoff = (group.piece_rate * (group.points / 100)) + 0.05
+        else:
+            p2.payoff = group.piece_rate * (group.points / 100)
+
+        # if group.points < group.target_points:
+        #     p1.payoff = (0.10-group.piece_rate) * (group.points/100)
+        #     p2.payoff = group.piece_rate * (group.points/100)
+        # else:
+        #     p1.payoff = 0.9*((0.10-group.piece_rate) * (group.points/100))
+        #     p2.payoff = (group.piece_rate * (group.points/100))+(0.1*((0.10-group.piece_rate) * (group.points/100)))
 
 
     def is_displayed(self):
@@ -227,7 +252,8 @@ page_sequence = [
     NormalWaitPage,
     BonusWorker1,
     BonusWorker2,
+    BonusWorker3,
     Task,
     ResultsWaitPage,
-    Results
+    Results,
 ]
