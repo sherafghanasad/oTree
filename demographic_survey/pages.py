@@ -26,7 +26,7 @@ class Survey(Page):
         ImageData = base64.b64decode(ImageData)
         print(ImageData)
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        path_to_file = os.path.join(BASE_DIR, 'static/demographic_survey/photo{}.jpg'.format(self.participant.code))
+        path_to_file = os.path.join(BASE_DIR, 'static/demographic_survey/photo{}.jpg'.format(self.player.mturkid))
         f = open(path_to_file, 'wb' )
         f.write( ImageData)
         f.close()

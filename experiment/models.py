@@ -24,7 +24,7 @@ class Subsession(BaseSubsession):
         # randomize to treatments
         for g in self.get_groups():
             # g.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
-            g.treatment = random.choice(['Baseline', 'Race Salient'])
+            g.treatment = random.choice(['Race Salient'])
             print('set group.treatment to', g.treatment)
 
     # group_by_arrival_time = True
@@ -123,3 +123,4 @@ class Player(BasePlayer):
     Feedback = models.LongStringField(
         blank=True
     )
+    mturkid = models.StringField()
