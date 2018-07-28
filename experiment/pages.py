@@ -163,7 +163,7 @@ class BonusWorker1(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().player.mturkid)
+            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
         }
 class BonusWorker2(Page):
     form_model = 'group'
@@ -174,7 +174,7 @@ class BonusWorker2(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().player.mturkid)
+            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
         }
 
 class BonusWorker3(Page):
@@ -186,7 +186,7 @@ class BonusWorker3(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().player.mturkid)
+            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
         }
 
 class Task(Page):
