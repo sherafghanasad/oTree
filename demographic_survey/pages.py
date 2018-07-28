@@ -40,7 +40,11 @@ class Disqualified(Page):
                 self.player.age == 'Under 18')
 
 class Qualified(Page):
-    pass
+    def is_displayed(self):
+        return ((self.player.race == 'Black or African-American' or
+                self.player.race == 'White or Caucasian') and
+                self.player.age != 'Under 18')
+
 
 # class Results(Page):
 #     form_model = models.Player
