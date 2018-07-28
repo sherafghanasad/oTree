@@ -2,8 +2,8 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-from otree_tools.fields import OtherModelField
-# from .fields import OtherModelField
+# from otree_tools.fields import OtherModelField
+from .fields import OtherModelField
 from django.db import models as django_models
 import random
 
