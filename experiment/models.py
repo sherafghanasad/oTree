@@ -124,3 +124,6 @@ class Player(BasePlayer):
         blank=True
     )
     mturkid = models.StringField()
+
+    testimage = django_models.TextField(default='0')
+    delete_photo = models.BooleanField()

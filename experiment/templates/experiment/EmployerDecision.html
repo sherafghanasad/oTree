@@ -1,4 +1,5 @@
 {% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
 {% load otree static %}
 
 {% block title %}
@@ -199,6 +200,92 @@
 {% endif %}
 
     {% formfield group.piece_rate label = "Now, how much do you want to transfer to your team member for every 100 points scored by him/her?" %}
+<p>
+    Write the number of cents that you selected above on a small white piece of paper and take a picture using your webcam as
+    shown below in the sample picture.
+    Make sure you follow these guidelines when taking a photo;
+</p>
+
+<p>
+    1. Your face must NOT be visible in the picture.
+</p>
+
+<p>
+    2. Try to avoid showing any jewelry/watches/tattoos/markings etc. on the picture.
+</p>
+
+<p>
+    3. You must show part of your hand in the picture.
+</p>
+
+<p>
+    4. Use a plain background, if possible.
+</p>
+
+<p>
+    Here is a sample picture if you chose $0.00 above.
+</p>
+
+<figure>
+    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
+       <img src="{% static '/experiment/SamplePhoto.jpg' %}" width="350px" height="220px" alt="Sample Picture $0.00" title="Sample Picture $0.00">
+    </a>
+    <figcaption><b>Sample Picture $0.00</b></figcaption>
+</figure>
+
+
+<p>
+    You may take multiple photos, move to the next question when you are satisfied with the picture shown on the right.
+</p>
+
+  <div class="row well-lg">
+    <div  class="col-md-5" id="my_camera" style="width:320px; height:240px;"></div>
+    <div  class="col-md-2">
+
+    </div>
+    <div  class="col-md-5" id="my_result"></div>
+</div>
+
+<input type="hidden" name="testimage" required id="id_testimage" class="form-control">
+
+<div  class="row">
+<div  class="col-md-12">
+<button type="button" class="btn btn-danger" id='make_photo'>Take photo!</button>
+</div>
+</div>
+<br>
+<div  class="row">
+  <div  class="col-md-12">
+    </div>
+    </div>
+
+
+<script src='{% static "experiment/newcamera/webcam.js" %}' type="text/javascript"></script>
+<script>
+
+$(function() {
+    $("#make_photo").click( function()
+         {
+          take_snapshot();
+         }
+    );
+});
+
+</script>
+
+
+
+<script language="JavaScript">
+  Webcam.attach( '#my_camera' );
+
+  function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+      document.getElementById('id_testimage').value = data_uri;
+    } );
+  }
+</script>
+
     {% formfield group.guessed_points label = "How many points do you expect your team member to score in 10 minutes? You will be paid extra 5 cents if your guess is within the range of 100 points of the actual points scored." %}
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}

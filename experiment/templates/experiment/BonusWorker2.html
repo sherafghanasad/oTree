@@ -7,22 +7,21 @@
 
 {% block content %}
 
-{% if group.treatment == 'Race Salient' or group.treatment == 'Race Salient & Three Stage' %}
-<figure>
-    <img src="{% static image_path %}" width="250" height="200" align="middle"/>
-    <figcaption><b>Other Participant</b></figcaption>
-</figure>
-{% endif %}
+
 
     {% formfield group.guessed_piece_rate label="Before you see the chosen bonus rate, select your guess here. This will not have any affect on the rate which is already chosen by the other participant"%}
 
 <p>
-    Your team member has chosen a following bonus rate for you;
-</p>
+    Your team member has chosen a bonus of <b>{{group.piece_rate}} per 100 points</b> for you;
 
-<h1>
-    Bonus Rate = {{group.piece_rate}} per 100 points scored
-</h1>
+</p>
+{% if group.treatment == 'Race Salient' or group.treatment == 'Race Salient & Three Stage' %}
+<figure>
+    <img src="{% static image_path %}" width="250" height="200" align="middle"/>
+    <figcaption>Cents per 100 points (Picture by your team member)</figcaption>
+</figure>
+{% endif %}
+
 
     <button>
         Next

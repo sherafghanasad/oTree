@@ -68,6 +68,24 @@ class EmployerDecision(Page):
     def is_displayed(self):
         return self.player.id_in_group == 1
 
+    def before_next_page(self):
+        ImageData = self.request.POST.get('testimage')
+        ImageData = dataUrlPattern.match(ImageData).group(2)
+
+        # If none or len 0, means illegal image data
+        if (ImageData == None or len(ImageData) == 0):
+            # PRINT ERROR MESSAGE HERE
+            print('You must take a picture to continue')
+
+        # Decode the 64 bit string into 32 bit
+        ImageData = base64.b64decode(ImageData)
+        print(ImageData)
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+        path_to_file = os.path.join(BASE_DIR, 'static/experiment/photo{}.jpg'.format(self.player.participant.code))
+        f = open(path_to_file, 'wb' )
+        f.write( ImageData)
+        f.close()
+
 class ControlQuestionsEmployer(Page):
     form_model = 'player'
     form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question6E', 'Question6W',
@@ -163,7 +181,7 @@ class BonusWorker1(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
+            'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
         }
 class BonusWorker2(Page):
     form_model = 'group'
@@ -174,7 +192,7 @@ class BonusWorker2(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
+            'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
         }
 
 class BonusWorker3(Page):
@@ -186,7 +204,7 @@ class BonusWorker3(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'demographic_survey/photo{}.jpg'.format(self.player.get_partner().mturkid)
+            'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
         }
 
 class Task(Page):
