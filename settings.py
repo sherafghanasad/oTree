@@ -196,16 +196,6 @@ SECRET_KEY = 'f*n_(%11(w&438tavghijhaaze8=#st#j#o8z1#alv8aq2&r)y'
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
-
 DATABASES = {
     'default': dj_database_url.config(
         # Rather than hardcoding the DB parameters here,
