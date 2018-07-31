@@ -9,6 +9,14 @@ dataUrlPattern = re.compile('data:image/(png|jpeg);base64,(.*)$')
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
 
+class Consent(Page):
+    form_model = 'player'
+    form_fields = ['consent']
+
+    def consent_error_message(self, value):
+        if not value:
+            return 'You must accept the consent form in order to proceed with the study! If you do not accept close this form and return the HIT'
+
 class Survey(Page):
     form_model = 'player'
     form_fields = ['mturkid', 'gender', 'race', 'age', 'education', 'testimage']
@@ -62,6 +70,7 @@ class Qualified(Page):
 
 
 page_sequence = [
+    Consent,
     Survey,
     Disqualified,
     Qualified

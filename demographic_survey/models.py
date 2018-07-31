@@ -6,7 +6,7 @@ from otree_tools.fields import OtherModelField
 # from .fields import OtherModelField
 from django.db import models as django_models
 import random
-
+from django import forms as djforms
 
 author = 'Sher Afghan Asad'
 
@@ -50,3 +50,6 @@ class Player(BasePlayer):
     )
     testimage = django_models.TextField()
     delete_photo = models.BooleanField()
+    consent = models.BooleanField(widget=djforms.CheckboxInput,
+                                  initial=False
+                                  )

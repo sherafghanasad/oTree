@@ -1,0 +1,146 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load static otree %}
+
+{% block title %}
+    Informed Consent Document
+{% endblock %}
+
+{% block content %}
+<p>
+    <b>Title of Study:</b> Decisions in Labor Market
+</p>
+
+<p>
+    <b>Investigators:</b> Sher Afghan Asad, Joydeep Bhattacharya
+</p>
+
+<p>
+    This brief screener is a part of a research project at the Iowa State University. You will
+    receive $0.05 for completing the screener, which is used to see if you are eligible for the
+    full study. Individuals who qualify will be immediately invited to participate in a 15-minute
+    study for a reward of 1 dollar plus bonus. If you do not qualify for participation based on this
+    screening questionnaire, all the information about you will be destroyed.
+</p>
+<p>
+    <b>Description of Procedures</b>
+</p>
+
+<p>
+    To be considered for participation in the study, you will have to answer few demographic
+    questions and upload a picture using your webcam. In the next screen, your browser will
+    ask permission to access your webcam which you must accept. Once you have
+    filled out the survey and submitted the picture, you may be invited to participate in the
+    full study. In the full study, you will be randomly matched with another participant. You
+    and your randomly matched participant will make decisions about bonuses for each other and
+    one of you will work on a simple task that will affect your and your matched participant earnings.
+    The experiment will last for either 5 minutes or 15 minutes depending on your role in the
+    experiment. You will be asked to upload a picture later in the full study which may be showed to your
+    matched participant. You will be given more information about the structure of the study in the
+    instructions.
+
+</p>
+<p>
+    <b>Risks or Discomforts</b>
+</p>
+<p>
+    There are no foreseeable risks currently in participating in the study.
+</p>
+
+<p>
+    <b>Benefits</b>
+</p>
+<p>
+    If you decide to participate in this study, there are no direct benefits to you. It is hoped
+that the information gained in this study will benefit the field of economics by providing
+more insight into the process of how decisions are made in the labor markets.
+</p>
+
+<p>
+    <b>Costs and Compensation</b>
+</p>
+
+<p>
+    You will not bear any costs from participating in this study. If you participate you will
+    spend no longer than 5 or 15 minutes depending on your role. Participants will earn $1
+    for participating in the experiment and a bonus amount depending on the decisions in the
+    experiment. Your final compensation will vary depending on your and your randomly
+    matched participant choices. You will need to complete a form to receive payment.
+</p>
+
+<p>
+    <b>Participant Rights</b>
+</p>
+<p>
+    Participating in this study is completely voluntary. You may choose not to take part in the
+    study or to stop participating at any time, for any reason, without penalty or negative
+    consequences. If you have any questions about the rights of research subjects or researchrelated
+    injury, please contact the IRB Administrator, 515-294-4566, IRB@iastate.edu, or
+    Director, 515-294-3115, Office for Responsible Research, Iowa State University, Ames,
+    Iowa 50011.
+</p>
+
+<p>
+    <b>Confidentiality</b>
+</p>
+
+<p>
+    This consent form, any other documents and uploaded picture identifying participants will
+    be kept confidential to the extent permitted by applicable laws and regulations and will
+    not be made publicly available. However, federal government regulatory agencies, auditing
+    departments of Iowa State University, and the Institutional Review Board (a committee
+    that reviews and approves human subject research studies) may inspect and/or copy study
+    records for quality assurance and data analysis. These records may contain private
+    information. This experiment is approved by the Institutional Review Board at Iowa State
+    University (ISU IRB: 18-201-00 Approved Date: 07/18/2018 Expiration Date: 07/17/2020). It is assured
+    that the confidentiality of your data, your uploaded picture, and the choices that you make
+    in the study will be strictly maintained. To ensure confidentiality to the extent permitted
+    by law, the following measures will be taken: Data will be stored on a secure computer or
+    department server under password protection. Your identifiable information will be
+    separated from your decisions in the experiment. When we report results, we will group
+    responses in aggregate; individual responses will not be shared. Please be aware that any
+    work performed on Amazon MTurk can potentially be linked to information about you on
+    your Amazon profile. We will not be accessing any information about you that you may
+    have put on your Amazon public profile page. We will store your MTurk worker ID
+    separately from the other information you provide to us.
+</p>
+<p>
+    <b>Future Use of Data</b>
+</p>
+<p>
+    De-identified information collected about you during this study may be shared with other
+    researchers or used for future research studies. We may also get your uploaded picture
+    rated on different factors. We will not obtain additional informed consent from you before
+    sharing the de-identified data or getting your picture evaluated for different
+    characteristics.
+</p>
+<p>
+    <b>Questions</b>
+</p>
+
+<p>
+    You are encouraged to ask questions at any time during this study. For further information
+    about the study, contact Sher Afghan Asad at 515-735-6309 or saasad@iastate.edu or
+    Joydeep Bhattacharya at joydeep@iastate.edu.
+</p>
+<p>
+    <b>Consent and Authorization Provisions</b>
+</p>
+<p>
+     By checking the box below you acknowledge, that you voluntarily agree to participate in this study, that the
+    study has been explained to you, that you have been given the time to read the document, and that your questions
+    have been satisfactorily answered. You may print a copy of this informed consent document for your records.
+</p>
+
+<p class='red'>
+                <i>{{form.consent}}
+                    I acknowledge that I have read the material above and I agree to participate in the study.
+                </i>
+            </p>
+
+<p>
+    If you don't agree with this consent document, then close this form and return the HIT.
+</p>
+{% next_button %}
+
+{% endblock %}

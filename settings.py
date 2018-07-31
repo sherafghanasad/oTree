@@ -106,7 +106,12 @@ SESSION_CONFIGS = [
     'num_demo_participants': 4,
     'app_sequence': ['experiment'],
     },
-
+    {
+        'name': 'consent',
+        'display_name': "Consent",
+        'num_demo_participants': 4,
+        'app_sequence': ['consent'],
+    },
     # other session configs go here ...
 ]
 
