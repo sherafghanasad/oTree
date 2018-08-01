@@ -1,0 +1,116 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+{% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
+    Take a photograph
+{% else %}
+    Select bonus rate and reward decision
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+
+<p>
+    You selected {{group.piece_rate}} per 100 points for your worker. Write this amount on a small (Post-it) piece of
+    paper and take a picture of it using your webcam as shown below in the sample picture.
+    Make sure you follow these guidelines when taking a photo.
+    <b>
+        Your HIT may not be approved if one or more of these guidelines are not followed.
+    </b>
+
+    This photo may be shown to your worker before he/she starts the task.
+</p>
+
+<p>
+    1. The written amount must be clearly visible.
+</p>
+<p>
+    2. Your face (or face of any other person) must NOT be visible.
+</p>
+
+<p>
+    3. Try to avoid showing any jewelry/watches/tattoos/markings etc.
+</p>
+
+<p>
+    4. You MUST show part of your hand.
+</p>
+
+<p>
+    5. Use a plain background, if possible.
+</p>
+
+<p>
+    6. Do NOT write anything on the paper other than the amount you choose to transfer to your worker.
+</p>
+
+
+<p>
+    Here is a sample picture for a hypothetical choice of $0.00.
+</p>
+
+<figure>
+    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
+       <img src="{% static 'experiment/SamplePhoto.jpg' %}" width="350px" height="220px" alt="Sample Picture $0.00" title="Sample Picture $0.00">
+    </a>
+    <figcaption><b>Sample Picture $0.00</b></figcaption>
+</figure>
+
+
+<p>
+    You may take multiple photos, move to the next question when you are satisfied with the picture shown on the right.
+</p>
+
+  <div class="row well-lg">
+    <div  class="col-md-5" id="my_camera" style="width:320px; height:240px;"></div>
+    <div  class="col-md-2">
+
+    </div>
+    <div  class="col-md-5" id="my_result"></div>
+</div>
+
+<input type="hidden" name="testimage" required id="id_testimage" class="form-control">
+
+<div  class="row">
+<div  class="col-md-12">
+<button type="button" class="btn btn-danger" id='make_photo'>Take photo!</button>
+</div>
+</div>
+<br>
+<div  class="row">
+  <div  class="col-md-12">
+    </div>
+    </div>
+
+
+<script src='{% static "experiment/newcamera/webcam.js" %}' type="text/javascript"></script>
+<script>
+
+$(function() {
+    $("#make_photo").click( function()
+         {
+          take_snapshot();
+         }
+    );
+});
+
+</script>
+
+
+
+<script language="JavaScript">
+  Webcam.attach( '#my_camera' );
+
+  function take_snapshot() {
+    Webcam.snap( function(data_uri) {
+      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
+      document.getElementById('id_testimage').value = data_uri;
+    } );
+  }
+</script>
+
+    {% next_button %}
+
+{% endblock %}

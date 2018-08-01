@@ -106,12 +106,12 @@ SESSION_CONFIGS = [
     'num_demo_participants': 4,
     'app_sequence': ['experiment'],
     },
-    {
-        'name': 'consent',
-        'display_name': "Consent",
-        'num_demo_participants': 4,
-        'app_sequence': ['consent'],
-    },
+    # {
+    #     'name': 'consent',
+    #     'display_name': "Consent",
+    #     'num_demo_participants': 4,
+    #     'app_sequence': ['consent'],
+    # },
     # other session configs go here ...
 ]
 
@@ -200,6 +200,18 @@ SECRET_KEY = 'f*n_(%11(w&438tavghijhaaze8=#st#j#o8z1#alv8aq2&r)y'
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# STATIC_URL = '/static/'
+
+# MIDDLEWARE_CLASSES = (
+#     # Simplified static file serving.
+#     # https://warehouse.python.org/project/whitenoise/
+#     'whitenoise.middleware.WhiteNoiseMiddleware',
+#     # ...
+# )
+
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DATABASES = {
     'default': dj_database_url.config(
@@ -219,7 +231,8 @@ DATABASES = {
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree',
-                  'otree_tools'
+                  'otree_tools',
+                  # 'django.contrib.staticfiles'
                   ]
 # inactive session configs
 ### {

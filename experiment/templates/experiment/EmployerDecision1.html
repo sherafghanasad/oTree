@@ -1,6 +1,5 @@
 {% extends "global/Page.html" %}
-{% load staticfiles otree_tags %}
-{% load otree static %}
+{% load static otree %}
 
 {% block title %}
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
@@ -13,13 +12,12 @@
 
 {% block content %}
 {% if group.treatment == 'Baseline' or group.treatment == 'Race Salient' %}
-    <p>
-        As explained before, you will be paid 10 cents for every 100 points scored by your team member. You
-        can choose to transfer part of these 10 cents to your team member who will work on a task for 10 minutes. Before
-        you decide much you want to share with the other participant, you may once again input different numbers in the calculator
-        below to see bonus amounts for yourself and your team member.
-    </p>
 
+{% formfield group.piece_rate label = "As explained before, your team will earn $0.10 for every 100 points scored by your worker. You, <b>as boss</b>, can choose to transfer either $0.00, $0.03, $0.06 or $0.09 to your worker. Please choose how much you want to transfer. Feel free to use the calculator given below." %}
+
+{% formfield group.guessed_points label = "How many points do you expect your worker to score in 10 minutes? You will be paid extra 5 cents if your guess is within the range of 100 points of the actual points scored." %}
+
+<p></p>
         <form method="post" name="earning_calculator" action="form-to-email.php">
             <body>
             <fieldset>
@@ -30,7 +28,7 @@
           <tbody>
             <tr>
             <tr>
-              <th scope="col">Bonus rate for your team member (per 100 points scored)</th>
+              <th scope="col">Bonus rate for worker (per 100 points scored)</th>
 
               <td>$<select id="Line_One" name="Line_One" onchange="
               document.getElementById('value1').value=this.value;
@@ -61,7 +59,7 @@
               </td>
             </tr>
             <tr>
-              <th scope="col">Points scored by your team member</th>
+              <th scope="col">Points scored by worker</th>
               <td><input style="border:none" type="numeric" id="Line_Two" name="Line_Two" onchange=
               "document.getElementById('value2').value=this.value;
               document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;
@@ -78,7 +76,7 @@
           </tr>
           <tr>
               <th>
-                  <label for="w_earning">Your team member's bonus amount</label>
+                  <label for="w_earning">Worker's bonus amount</label>
               </th>
               <td>
                   $<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Auto Calculated" disabled>
@@ -198,99 +196,9 @@
         </body>
         </form>
 {% endif %}
-
-    {% formfield group.piece_rate label = "Now, how much do you want to transfer to your team member for every 100 points scored by him/her?" %}
 <p>
-    Write the amount that you selected above on a small white piece of paper and take a picture using your webcam as
-    shown below in the sample picture.
-    Make sure you follow these guidelines when taking a photo;
+
 </p>
-
-<p>
-    1. Your face (or any other person/object) must NOT be visible in the picture.
-</p>
-
-<p>
-    2. Try to avoid showing any jewelry/watches/tattoos/markings etc. on the picture.
-</p>
-
-<p>
-    3. You MUST show part of your hand in the picture.
-</p>
-
-<p>
-    4. Use a plain background, if possible.
-</p>
-
-<p>
-    5. Do NOT write anything on the paper but the amount you choose to transfer to your team member.
-</p>
-
-<p>
-    Here is a sample picture if you chose $0.00 above.
-</p>
-
-<figure>
-    <a href='#' style='display:scroll; bottom:70px; right:0px;'>
-       <img src="{% static 'experiment/SamplePhoto.jpg' %}" width="350px" height="220px" alt="Sample Picture $0.00" title="Sample Picture $0.00">
-    </a>
-    <figcaption><b>Sample Picture $0.00</b></figcaption>
-</figure>
-
-
-<p>
-    You may take multiple photos, move to the next question when you are satisfied with the picture shown on the right.
-</p>
-
-  <div class="row well-lg">
-    <div  class="col-md-5" id="my_camera" style="width:320px; height:240px;"></div>
-    <div  class="col-md-2">
-
-    </div>
-    <div  class="col-md-5" id="my_result"></div>
-</div>
-
-<input type="hidden" name="testimage" required id="id_testimage" class="form-control">
-
-<div  class="row">
-<div  class="col-md-12">
-<button type="button" class="btn btn-danger" id='make_photo'>Take photo!</button>
-</div>
-</div>
-<br>
-<div  class="row">
-  <div  class="col-md-12">
-    </div>
-    </div>
-
-
-<script src='{% static "experiment/newcamera/webcam.js" %}' type="text/javascript"></script>
-<script>
-
-$(function() {
-    $("#make_photo").click( function()
-         {
-          take_snapshot();
-         }
-    );
-});
-
-</script>
-
-
-
-<script language="JavaScript">
-  Webcam.attach( '#my_camera' );
-
-  function take_snapshot() {
-    Webcam.snap( function(data_uri) {
-      document.getElementById('my_result').innerHTML = '<img src="'+data_uri+'"/>';
-      document.getElementById('id_testimage').value = data_uri;
-    } );
-  }
-</script>
-
-    {% formfield group.guessed_points label = "How many points do you expect your team member to score in 10 minutes? You will be paid extra 5 cents if your guess is within the range of 100 points of the actual points scored." %}
 
 {% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
     {% formfield group.target_points label = "How many points should the other participant score to get reward from you? (Enter 0 if you want to always reward the other participant, enter a really large number (such as 9999) if you don't want to reward the other participant.)" %}

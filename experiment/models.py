@@ -92,8 +92,8 @@ class Player(BasePlayer):
 
     Question1 = models.LongStringField(
         choices=["Work on a task for 10 minutes.",
-                 "Select a bonus rate for a person who will work on a task.",
-                 "Select a bonus rate and a reward decision for a person who will work on a task.",
+                 "Select a bonus rate for a team-member/worker who will work on a task.",
+                 # "Select a bonus rate and a reward decision for a person who will work on a task.",
                  "Select a bonus rate and work on a task."],
         widget=widgets.RadioSelect
     )

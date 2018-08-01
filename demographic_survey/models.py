@@ -36,7 +36,7 @@ class Player(BasePlayer):
         # widget=widgets.RadioSelect
     )
     race = OtherModelField(
-        choices=['American Indian or Alaskan Native', 'Asian', 'Black or African-American', 'Hispanic or Latino',
+        choices=['American Indian or Alaskan Native', 'Asian (including East and South Asia)', 'Black or African-American', 'Hispanic or Latino',
                  'Native Hawaiian or other Pacific Islander', 'White or Caucasian'],
     )
     age = models.StringField(

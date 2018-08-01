@@ -61,9 +61,16 @@ class InstructionsWorker(Page):
     def is_displayed(self):
         return self.player.id_in_group == 2
 
-class EmployerDecision(Page):
+class EmployerDecision1(Page):
     form_model = 'group'
     form_fields = ['piece_rate', 'guessed_points', 'target_points']
+
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
+class EmployerDecision2(Page):
+    form_model = 'player'
+    form_fields = ['testimage']
 
     def is_displayed(self):
         return self.player.id_in_group == 1
@@ -86,14 +93,24 @@ class EmployerDecision(Page):
         f.write( ImageData)
         f.close()
 
+class EmployerTask1(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
+
+class EmployerTask2(Page):
+    timeout_seconds = 30
+
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
 class ControlQuestionsEmployer(Page):
     form_model = 'player'
-    form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question6E', 'Question6W',
-                   'Question7E', 'Question7W']
+    form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5']
 
     def Question1_error_message(self, value):
         if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
-            if not (value == 'Select a bonus rate for a person who will work on a task.'):
+            if not (value == 'Select a bonus rate for a team-member/worker who will work on a task.'):
                 return ['That was incorrect, please reread the instructions and then try again.']
         else:
             if not (value == 'Select a bonus rate and a reward decision for a person who will work on a task.'):
@@ -114,28 +131,28 @@ class ControlQuestionsEmployer(Page):
         if not (value == 1):
             return ['That was incorrect, please reread the instructions and then try again.']
 
-    def Question6E_error_message(self, value):
-        if not(value == 1.5):
-            return ['That was incorrect, please reread the instructions and then try again.']
-
-    def Question6W_error_message(self, value):
-        if not (value == 0):
-            return ['That was incorrect, please reread the instructions and then try again.']
-
-    def Question7E_error_message(self, value):
-        if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
-            if not(value == 0.8):
-                return ['That was incorrect, please reread the instructions and then try again.']
-        else:
-            if not(value == 0.72):
-                return ['That was incorrect, please reread the instructions and then try again.']
-    def Question7W_error_message(self, value):
-        if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
-            if not(value == 1.2):
-                return ['That was incorrect, please reread the instructions and then try again.']
-        else:
-            if not(value == 1.28):
-                return ['That was incorrect, please reread the instructions and then try again.']
+    # def Question6E_error_message(self, value):
+    #     if not(value == 1.5):
+    #         return ['That was incorrect, please reread the instructions and then try again.']
+    #
+    # def Question6W_error_message(self, value):
+    #     if not (value == 0):
+    #         return ['That was incorrect, please reread the instructions and then try again.']
+    #
+    # def Question7E_error_message(self, value):
+    #     if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
+    #         if not(value == 0.8):
+    #             return ['That was incorrect, please reread the instructions and then try again.']
+    #     else:
+    #         if not(value == 0.72):
+    #             return ['That was incorrect, please reread the instructions and then try again.']
+    # def Question7W_error_message(self, value):
+    #     if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
+    #         if not(value == 1.2):
+    #             return ['That was incorrect, please reread the instructions and then try again.']
+    #     else:
+    #         if not(value == 1.28):
+    #             return ['That was incorrect, please reread the instructions and then try again.']
     def is_displayed(self):
         return self.player.id_in_group == 1
 
@@ -263,10 +280,13 @@ class NormalWaitPage(WaitPage):
 page_sequence = [
     # GroupingWaitPage,
     InstructionsEmployer,
+    EmployerTask1,
+    EmployerTask2,
     InstructionsWorker,
     ControlQuestionsEmployer,
     ControlQuestionsWorker,
-    EmployerDecision,
+    EmployerDecision1,
+    EmployerDecision2,
     NormalWaitPage,
     BonusWorker1,
     BonusWorker2,

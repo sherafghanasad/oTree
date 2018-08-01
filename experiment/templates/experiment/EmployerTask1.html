@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Description of Button-Pressing Task
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Here is the description of the button-pressing task that your worker will see.
+    On the next screen, you will get a chance to familiarize yourself with the same task
+    but only for a limited time of 30 seconds.
+</p>
+
+<p>
+    <h5>Description of the Task for Worker:</h5><i> The object of the task is to alternately press the “a” and “b” buttons on the
+    keyboard as quickly as possible for 10 minutes. Every time you successfully press the “a” and then the “b” button,
+    you will score a point. Note that points will only be scored when you alternate button pushes: just pressing
+    the “a” or the “b” button without alternating between the two will not result in points. Buttons must be pressed
+    by hand only (key-bindings or automated button-pushing programs/scripts cannot be used) or the task will not be
+    approved. Feel free to score as many points as you can.</i>
+</p>
+<button>
+    Start the practice button-pressing task
+</button>
+
+{% endblock %}
+
