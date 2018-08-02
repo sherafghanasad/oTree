@@ -7,9 +7,175 @@
 
 {% block content %}
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  View Instructions
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+    {% include 'experiment/InstructionsEmployer.html' %}
+
+            <!--<p>-->
+                <!--Welcome! Please read the following instructions very carefully.-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--In this study, you and another participant have been matched together to form a two-member team - -->
+                <!--think of yourself as the boss and your team member as the worker. Your team member/worker-->
+                <!--will work on a button-pressing task (to be described on the next page) for upto 10 minutes. Each of you will earn $1 simply-->
+                <!--for participating in this study. You may each earn additional bonus amounts based on the decisions you and your-->
+                <!--worker take. Your respective earnings will be transferred to your accounts within 24 hours.-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--Once the button-pressing task begins, your team will earn $0.10 for every 100-->
+                <!--points your worker will score. However, before the worker starts the task, you have-->
+                <!--to decide how much of these $0.10 you want to split between yourself and your worker.-->
+                <!--The amount you select for the worker will serve as his/her bonus rate for the task.-->
+                <!--Specifically, out of the 10 cents per 100 points that your team will receive,-->
+                <!--you can choose to give 0, 3, 6 or 9 cents to your worker, keeping the rest for-->
+                <!--yourself. Of course, the bigger the bonus rate you choose for your worker,-->
+                <!--the less your own bonus will be.-->
+                <!--On the other hand, you would want to try and incentivize your worker to-->
+                <!--score as many points as possible.-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--Your worker will not know anything about your identity and will only see the bonus rate selected by-->
+                <!--you before starting to work on the task.-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--<b>-->
+                    <!--To summarize, all you will need to do is select a bonus rate for your worker who will observe what-->
+                    <!--you have chosen before starting work on the button-pressing task. Bonus payments will be determined once-->
+                    <!--your worker has finished working on the task.-->
+                <!--</b>-->
+            <!--</p>-->
+
+            <!--<p>-->
+                <!--Here is one EXAMPLE of what can happen in the experiment.-->
+            <!--</p>-->
+                <!--<figure>-->
+                    <!--<a href='#' style='display:scroll; bottom:70px; right:0px;'>-->
+                       <!--<img src="{% static 'experiment/ExampleEmployer.png' %}" width="750px" height="350px" alt="Example" title="Example">-->
+                    <!--</a>-->
+                <!--</figure>-->
+
+            <!--<p>-->
+                <!--Here is an illustrative calculator for practice which you can use to-->
+                <!--calculate hypothetical earned bonuses. To do that, first select a bonus rate-->
+                <!--for the worker (0, 3, 6 or 9 cents per 100 points). Next enter the-->
+                <!--number of points you <b>imagine</b> the worker will score. The calculator-->
+                <!--will show you the earned bonus amounts for you and your worker.-->
+                <!--Of course, these bonuses are hypothetical since you don't know how many points-->
+                <!--the worker will actually score.-->
+
+                <!--This calculator will remain accessible to you at the time-->
+                <!--you will be making-->
+                <!--your decision about the bonuses.-->
+            <!--</p>-->
+
+                <!--<form method="post" name="earning_calculator" action="form-to-email.php">-->
+                    <!--<body>-->
+                    <!--<fieldset>-->
+                        <!--<legend>Bonus Calculator</legend>-->
+                <!--</fieldset>-->
+
+                <!--<table width="" border="">-->
+                  <!--<tbody>-->
+                    <!--<tr>-->
+                    <!--<tr>-->
+                      <!--<th scope="col">Bonus rate for worker (per 100 points scored)</th>-->
+
+                      <!--<td>$<select id="Line_One" name="Line_One" onchange="-->
+                      <!--document.getElementById('value1').value=this.value;-->
+                      <!--document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;-->
+                      <!--document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100;-->
+                      <!--document.getElementById('value3').value=Math.round((0.1-document.getElementById('value1').value)*100)/100">-->
+                          <!--<option value=""> Select here </option>-->
+                          <!--<option value="0"> 0 </option>-->
+                          <!--&lt;!&ndash;<option value="0.01"> 0.01 </option>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<option value="0.02"> 0.02 </option>&ndash;&gt;-->
+                          <!--<option value="0.03"> 0.03 </option>-->
+                          <!--&lt;!&ndash;<option value="0.04"> 0.04 </option>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<option value="0.05"> 0.05 </option>&ndash;&gt;-->
+                          <!--<option value="0.06"> 0.06 </option>-->
+                          <!--&lt;!&ndash;<option value="0.07"> 0.07 </option>&ndash;&gt;-->
+                          <!--&lt;!&ndash;<option value="0.08"> 0.08 </option>&ndash;&gt;-->
+                          <!--<option value="0.09"> 0.09 </option>-->
+                          <!--&lt;!&ndash;<option value="0.1"> 0.10 </option>&ndash;&gt;-->
+                        <!--</select></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th>-->
+                            <!--<label for="value3">Your bonus rate (per 100 points scored)</label>-->
+                        <!--</th>-->
+                        <!--<td>-->
+
+                          <!--$<input type="text" id="value3" name="" placeholder="Auto Calculated" disabled>-->
+                      <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                      <!--<th scope="col">Points scored by worker</th>-->
+                      <!--<td><input style="border:none" type="numeric" id="Line_Two" name="Line_Two" onchange=-->
+                      <!--"document.getElementById('value2').value=this.value;-->
+                      <!--document.getElementById('e_earning').value = (Math.round(((0.1 - document.getElementById('value1').value) * (document.getElementById('value2').value/100))*100))/100;-->
+                      <!--document.getElementById('w_earning').value = (Math.round((document.getElementById('value1').value * (document.getElementById('value2').value/100))*100))/100" placeholder="Your guess">-->
+                      <!--</td>-->
+                    <!--</tr>-->
+                  <!--<tr>-->
+                      <!--<th>-->
+                          <!--<label for="e_earning">Your bonus amount</label>-->
+                      <!--</th>-->
+                      <!--<td>-->
+                          <!--$<input style="border:none" type="text" id="e_earning" name="e_earning" placeholder="Auto Calculated" disabled>-->
+                      <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                      <!--<th>-->
+                          <!--<label for="w_earning">Worker's bonus amount</label>-->
+                      <!--</th>-->
+                      <!--<td>-->
+                          <!--$<input style="border:none" type="text" id="w_earning" name="w_earning" placeholder="Auto Calculated" disabled>-->
+                      <!--</td>-->
+                  <!--</tr>-->
+                  <!--</tbody>-->
+
+
+                <!--</table>-->
+                  <!--<fieldset>-->
+                  <!--<input type="hidden" id="value1">-->
+                  <!--<input type="hidden" id="value2">-->
+                  <!--<input type="hidden" id="value3">-->
+
+                  <!--</fieldset>-->
+
+                <!--</body>-->
+                <!--</form>-->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <p>
-    You must answer the following questions correctly before you can proceed with the experiment. Feel free to refer again to the
-    instructions given below.
+    You must answer the following questions correctly before you can proceed with the experiment. Feel free to refer
+    again to the instructions by clicking the above button.
 </p>
 
     {% formfield player.mturkid label="MTurk Worker ID" %}
@@ -23,7 +189,5 @@
     The next screen will ask you to select a bonus rate for your team member. Click next when you are ready.
 </p>
     {% next_button %}
-
-    {% include 'experiment/InstructionsEmployer.html' %}
 
 {% endblock %}

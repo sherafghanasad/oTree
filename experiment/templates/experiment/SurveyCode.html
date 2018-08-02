@@ -1,17 +1,9 @@
 {% extends "global/Page.html" %}
-{% load static otree %}
+{% load otree static %}
 
 {% block title %}
-    Do not qualify
+    Survey Code
 {% endblock %}
-
-{% block content %}
-
-<p>
-    Thank you for filling out the survey. You do NOT qualify to participate in this study.
-    The study requires a certain type of profile of participants and unfortunately your
-    profile did not match.
-</p>
 
 {% block content %}
     Your survey completion code is {{player.participant.code}}
@@ -21,7 +13,3 @@
     Above is a unique code that is tied to the completion of your specific survey. Please enter this code into
     the textbox on Mechanical Turk to get approved for this task and receive compensation.
 </p>
-
-    {% next_button %}
-
-{% endblock %}

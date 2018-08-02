@@ -10,23 +10,27 @@
 
 <p> Press 'a' then 'b'</p>
 
-<p><h1>Points: <span id="points">0</span></h1></p>
+<p><h1>Points: <span id="employer_points">0</span></h1></p>
+
+<input type="hidden" name="employer_points" value="0" id="id_employer_points"/>
 
 <script>
-  const target = document.getElementById('points');
+
+  const target = document.getElementById('employer_points');
   // const btarget = document.getElementById('bonus');
   // const obtarget = document.getElementById('obonus');
 
-  var points = 0;
+  var employer_points = 0;
 
     document.addEventListener('keydown', function (event) {
         if (event.key === 'a' || event.key === 'A') x = true;
         if (event.key === 'b' || event.key === 'B') {
             if (!x) return;
-            if (points<9999) {
-                target.textContent = ++points;
+            if (employer_points<9999) {
+                target.textContent = ++employer_points;
                 x = false;
             }
+         document.getElementById('id_employer_points').value = employer_points;
         }
     });
 

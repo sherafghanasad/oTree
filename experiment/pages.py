@@ -61,6 +61,19 @@ class InstructionsWorker(Page):
     def is_displayed(self):
         return self.player.id_in_group == 2
 
+class EmployerTask1(Page):
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
+class EmployerTask2(Page):
+    form_model = 'group'
+    form_fields = ['employer_points']
+
+    timeout_seconds = 30
+
+    def is_displayed(self):
+        return self.player.id_in_group == 1
+
 class EmployerDecision1(Page):
     form_model = 'group'
     form_fields = ['piece_rate', 'guessed_points', 'target_points']
@@ -93,16 +106,7 @@ class EmployerDecision2(Page):
         f.write( ImageData)
         f.close()
 
-class EmployerTask1(Page):
-    def is_displayed(self):
-        return self.player.id_in_group == 1
 
-
-class EmployerTask2(Page):
-    timeout_seconds = 30
-
-    def is_displayed(self):
-        return self.player.id_in_group == 1
 
 class ControlQuestionsEmployer(Page):
     form_model = 'player'
@@ -244,6 +248,9 @@ class Results(Page):
     def vars_for_template(self):
         return {'reward': (0.1*((0.1 - self.group.piece_rate)*(self.group.points/100)))}
 
+class SurveyCode(Page):
+    pass
+
 class ResultsWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
@@ -294,4 +301,5 @@ page_sequence = [
     Task,
     ResultsWaitPage,
     Results,
+    SurveyCode,
 ]

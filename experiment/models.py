@@ -46,6 +46,8 @@ class Group(BaseGroup):
     )
 
     points = models.IntegerField(default='0')
+    employer_points = models.IntegerField(default='0')
+
     guessed_points = models.IntegerField()
     target_points = models.IntegerField()
 

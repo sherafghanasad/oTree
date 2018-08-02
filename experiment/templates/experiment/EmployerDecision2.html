@@ -7,6 +7,24 @@
 {% else %}
     Select bonus rate and reward decision
 {% endif %}
+{% endblock %}
+
+{% block scripts %}
+
+<style>
+    figure {
+        display: inline-block;
+        border: 0px dotted gray;
+        margin: 0px; /* adjust as needed */
+    }
+    figure img {
+        vertical-align: top;
+    }
+    figure figcaption {
+        border: 0px dotted blue;
+        text-align: center;
+    }
+</style>
 
 {% endblock %}
 
@@ -60,7 +78,13 @@
 
 
 <p>
-    You may take multiple photos, move to the next question when you are satisfied with the picture shown on the right.
+    Click "Take Photo" to take a picture. If the picture shown on the right/below appears to you to not meet one or
+    more of the above guidelines, you may retake the photo by clicking "Take Photo" again.
+    Only click Next once you are satisfied with the picture.
+    <b>
+        Remember your HIT may not be approved if one or more of the above guidelines are not followed.
+    </b>
+
 </p>
 
   <div class="row well-lg">
