@@ -44,6 +44,9 @@ class Group(BaseGroup):
     fair_piece_rate = models.CurrencyField(
         choices=currency_range(0, 0.1, 0.03)
     )
+    imaginary_piece_rate = models.CurrencyField(
+        choices=currency_range(0, 0.1, 0.03)
+    )
 
     points = models.IntegerField(default='0')
     employer_points = models.IntegerField(default='0')
@@ -114,7 +117,7 @@ class Player(BasePlayer):
     Question7E = models.FloatField()
     Question7W = models.FloatField()
     Question8 = models.StringField(
-        choices=['Some other participant',
+        choices=['Team member/boss',
                  'Experimenters/Researchers',
                  'Computer/Random']
     )

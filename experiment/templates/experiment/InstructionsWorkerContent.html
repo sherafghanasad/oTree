@@ -1,0 +1,87 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block content %}
+
+<p>
+    Welcome! Please read the following instructions very carefully.
+</p>
+
+<p>
+    In this study, you and another participant have been matched together to form a two-member team -
+    think of yourself as the worker and your team member as your boss. You, as worker,
+    will work on a button-pressing task (to be described below) for upto 10 minutes. Both you and your boss will earn
+    $1 simply for participating in this study. You may each earn additional bonus amounts based on the decisions you and your
+    boss take. Your respective earnings will be transferred to your accounts within 24 hours.
+</p>
+
+<p>
+    Once you start working on the button-pressing task, your team will earn $0.10 for every 100
+    points you score. However, before you start the task, your boss will decide and announce
+    how he/she will split the $0.10 between you and him/her. Your share (out of $0.10) will be your bonus rate for working
+    on the task. Of course, the bigger the bonus rate your boss chooses for you, the less his/her own bonus will be.
+</p>
+
+<p>
+    Specifically, your boss must select a bonus rate of either 0, 3, 6 or 9 cents for every 100 points scored by you.
+    For example, if your boss chose 3 cents per 100 points for you, he/she will keep 7 cents for himself/herself.
+</p>
+
+<p>
+    The point at which your boss decided the bonus rate for you, he/she did not know anything about your identity.
+    He/she will observe the points scored by you once you have finished working on the task.
+</p>
+
+<p>
+    <b>
+        To summarize, your boss has selected a bonus rate of either 0, 3, 6 or 9 cents for every 100 points
+        scored by you on a button-pressing task. On the next screen, you will see the bonus rate selected and you will
+        then work on the task for upto 10 minutes. Bonus payments will be determined once you have finished working on the task.
+    </b>
+</p>
+
+
+<p>
+    <h5>Description of the Task:</h5> The object of the task is to alternately press the “a” and “b” buttons on the
+    keyboard as quickly as possible for 10 minutes. Every time you successfully press the “a” and then the “b” button,
+    you will receive a point. Note that points will only be rewarded when you alternate button pushes: just pressing
+    the “a” or the “b” button without alternating between the two will not result in points. Buttons must be pressed
+    by hand only (key-bindings or automated button-pushing programs/scripts cannot be used) or the task will not be
+    approved. Feel free to score as many points as you can.
+</p>
+
+<p>
+    Below is an example of how the task will work. Try pressing "a" and "b" alternately to score points. Below we have
+    limited the maximum number of points you can score to 30 as this is just practice, but the actual task will not have
+    a point limit. In the actual task, you will have 10 minutes to score as many points as you can. You may stop
+    anytime before the 10-minute mark is up. Of course, the longer you work on the task, the more points you will score.
+
+</p>
+
+
+<p> Press 'a' then 'b'</p>
+
+<p><h1>Points: <span id="points">0</span></h1></p>
+
+<script>
+  const target = document.getElementById('points');
+  // const btarget = document.getElementById('bonus');
+  // const obtarget = document.getElementById('obonus');
+
+  var points = 0;
+
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'a' || event.key === 'A') x = true;
+        if (event.key === 'b' || event.key === 'B') {
+            if (!x) return;
+            if (points<30) {
+                target.textContent = ++points;
+                x = false;
+            }
+        }
+    });
+
+</script>
+
+
+{% endblock %}

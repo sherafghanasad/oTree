@@ -6,28 +6,48 @@
 {% endblock %}
 
 {% block content %}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  View Instructions
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Instructions</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+    {% include 'experiment/InstructionsWorkerContent.html' %}
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <p>
-    Answer the following questions before you can proceed with the experiment. Feel free to refer again to the
-    instructions given below.
+    Answer the following questions correctly before you can proceed with the experiment. Feel free to refer again to the
+    instructions by clicking the button above.
 </p>
+
     {% formfield player.mturkid label="MTurk Worker ID" %}
 
     {% formfield player.Question1 label="1.	What are you supposed to do in this experiment?" %}
-    {% formfield player.Question8 label="2.	Who has selected a bonus rate for you" %}
-    {% formfield player.Question2 label="3. What is the lowest bonus that could have been selected by your team member (in cents per 100 points)?" %}
-    {% formfield player.Question3 label="4. What is the maximum bonus that could have been selected by your team member (in cents per 100 points)?" %}
-    {% formfield player.Question4 label="5.	Higher points in a task lead to higher bonus payment for both you and your team member for any positive bonus rate." %}
-    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for your team member." %}
-
-{% if group.treatment == 'Three Stage' or group.treatment == 'Race Salient & Three Stage' %}
-    {% formfield player.Question9 label="7.	The other participant may reward your effort depending on how many points you score on the task." %}
-{% else %}
-    <input type="hidden" name="Question9" value="True" id="id_Question9"/>
-{% endif %}
+    {% formfield player.Question8 label="2.	Who selects the bonus rate for you?" %}
+    {% formfield player.Question2 label="3. Your boss selects a bonus rate for you from among 4 different choices. What is the lowest bonus rate (in cents per 100 points) that he/she can select?" %}
+    {% formfield player.Question3 label="4. Similarly, what is the maximum bonus rate (in cents per 100 points)?" %}
+    {% formfield player.Question4 label="5.	The more points you score, the higher is your and your boss's earnings for any positive bonus rate" %}
+    {% formfield player.Question5 label="6.	Higher bonus rate for you means lower bonus rate for your boss." %}
 
     {% next_button %}
 
-    {% include 'experiment/InstructionsWorker.html' %}
 
 {% endblock %}

@@ -6,10 +6,13 @@
 {% endblock %}
 
 {% block content %}
-    Your survey completion code is {{player.participant.code}}
-{% endblock %}
+<p>
+    Your survey completion code is <b>{{player.participant.code}}</b>
+</p>
 
 <p>
     Above is a unique code that is tied to the completion of your specific survey. Please enter this code into
     the textbox on Mechanical Turk to get approved for this task and receive compensation.
 </p>
+
+{% endblock %}

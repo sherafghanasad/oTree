@@ -162,7 +162,7 @@ class ControlQuestionsEmployer(Page):
 
 class ControlQuestionsWorker(Page):
     form_model = 'player'
-    form_fields = ['mturkid','Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8', 'Question9']
+    form_fields = ['mturkid','Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8']
 
     def Question1_error_message(self, value):
         if not (value == 'Work on a task for 10 minutes.'):
@@ -183,7 +183,7 @@ class ControlQuestionsWorker(Page):
         if not (value == 1):
             return ['That was incorrect, please reread the instructions and then try again.']
     def Question8_error_message(self, value):
-        if not (value == 'Some other participant'):
+        if not (value == 'Team member/boss'):
             return ['That was incorrect, please reread the instructions and then try again.']
     def Question9_error_message(self, value):
         if not (value == 1):
@@ -195,7 +195,7 @@ class ControlQuestionsWorker(Page):
 
 class BonusWorker1(Page):
     form_model = 'group'
-    form_fields = ['guessed_piece_rate']
+    form_fields = ['guessed_piece_rate', 'imaginary_piece_rate']
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -206,7 +206,7 @@ class BonusWorker1(Page):
         }
 class BonusWorker2(Page):
     form_model = 'group'
-    form_fields = ['guessed_piece_rate']
+    form_fields = ['guessed_piece_rate', 'imaginary_piece_rate']
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -218,7 +218,7 @@ class BonusWorker2(Page):
 
 class BonusWorker3(Page):
     form_model = 'group'
-    form_fields = ['guessed_piece_rate', 'fair_piece_rate']
+    form_fields = ['guessed_piece_rate', 'imaginary_piece_rate', 'fair_piece_rate']
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -259,14 +259,14 @@ class ResultsWaitPage(WaitPage):
         p2 = group.get_player_by_id(2)
 
         if abs(group.guessed_points-group.points)<=50:
-            p1.payoff = ((0.10 - group.piece_rate) * (group.points / 100)) + 0.05
+            p1.payoff = 1+(((0.10 - group.piece_rate) * (group.points / 100)) + 0.05)
         else:
-            p1.payoff = (0.10 - group.piece_rate) * (group.points / 100)
+            p1.payoff = 1+((0.10 - group.piece_rate) * (group.points / 100))
 
         if group.guessed_piece_rate == group.piece_rate:
-            p2.payoff = (group.piece_rate * (group.points / 100)) + 0.05
+            p2.payoff = 1+((group.piece_rate * (group.points / 100)) + 0.05)
         else:
-            p2.payoff = group.piece_rate * (group.points / 100)
+            p2.payoff = 1+(group.piece_rate * (group.points / 100))
 
         # if group.points < group.target_points:
         #     p1.payoff = (0.10-group.piece_rate) * (group.points/100)

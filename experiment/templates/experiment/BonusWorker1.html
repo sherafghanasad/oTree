@@ -7,7 +7,9 @@
 
 {% block content %}
 
-    {% formfield group.guessed_piece_rate label="Before you see the chosen bonus rate, select your guess here. This will not have any affect on the rate which is already chosen by your team member. You will be paid extra 5 cents if your guess is correct." %}
+    {% formfield group.imaginary_piece_rate label="Just for a moment, imagine yourself as the boss. What bonus rate do you think you would choose for your worker?"%}
+
+    {% formfield group.guessed_piece_rate label="Before you see the bonus rate chosen by your boss, please select your best guess of what your boss would have chosen. This will not have any affect on the rate which has already been chosen by your boss. You will be paid extra 5 cents if your guess is correct." %}
 
     <button>
         View the selected bonus rate
