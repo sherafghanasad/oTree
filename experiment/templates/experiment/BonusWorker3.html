@@ -25,9 +25,13 @@
 
 {% block content %}
 
-    {% formfield group.imaginary_piece_rate label="Just for a moment, imagine yourself as the boss. What bonus rate do you think you would choose for your worker?"%}
+<p>
+    Just for a moment, imagine yourself as the boss. What bonus rate do you think you would choose for your worker?:<input type="text" value="{{ group.imaginary_piece_rate }}"  readonly />
+</p>
 
-    {% formfield group.guessed_piece_rate label="Before you see the bonus rate chosen by your boss, please select your best guess of what your boss would have chosen. This will not have any affect on the rate which has already been chosen by your boss. You will be paid extra 5 cents if your guess is correct." %}
+<p>
+    Before you see the bonus rate chosen by your boss, please select your best guess of what your boss would have chosen. This will not have any affect on the rate which has already been chosen by your boss. You will be paid extra 5 cents if your guess is correct. <input type="text" value="{{ group.guessed_piece_rate }}"  readonly />
+</p>
 
 <p>
     Your boss has chosen a bonus of <b>{{group.piece_rate}} per 100 points</b> for you;
@@ -35,12 +39,10 @@
 </p>
 {% if group.treatment == 'Race Salient' or group.treatment == 'Race Salient & Three Stage' %}
 <figure>
-    <img src="{% static image_path %}" width="250" height="200" align="middle"/>
-    <figcaption>Cents per 100 points (Picture by your team member)</figcaption>
+    <img src="{{image_path}}" width="250" height="200" align="middle"/>
+    <figcaption>Bonus per 100 points (Picture by your boss)</figcaption>
 </figure>
 {% endif %}
-
-    {% formfield group.fair_piece_rate label="What, in your opinion, would be a fair bonus rate?" %}
 
 <p>
     Now, when you are ready click next to start working on the button-pressing task for next 10 minutes. You are free to

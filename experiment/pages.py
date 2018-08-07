@@ -206,7 +206,7 @@ class BonusWorker1(Page):
         }
 class BonusWorker2(Page):
     form_model = 'group'
-    form_fields = ['guessed_piece_rate', 'imaginary_piece_rate']
+    form_fields = []
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -222,7 +222,7 @@ class BonusWorker2(Page):
 
 class BonusWorker3(Page):
     form_model = 'group'
-    form_fields = ['guessed_piece_rate', 'imaginary_piece_rate', 'fair_piece_rate']
+    form_fields = []
 
     def is_displayed(self):
         return self.player.id_in_group == 2
@@ -231,6 +231,12 @@ class BonusWorker3(Page):
         return {
             'image_path': self.player.get_partner().testimage
         }
+class FairRate(Page):
+    form_model = 'group'
+    form_fields = ['fair_piece_rate']
+
+    def is_displayed(self):
+        return self.player.id_in_group == 2
 
 class Task(Page):
     form_model = 'group'
@@ -303,6 +309,7 @@ page_sequence = [
     BonusWorker2,
     BonusWorker3,
     Task,
+    FairRate,
     ResultsWaitPage,
     Results,
     SurveyCode,
