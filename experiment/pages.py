@@ -211,9 +211,13 @@ class BonusWorker2(Page):
     def is_displayed(self):
         return self.player.id_in_group == 2
 
+    # def vars_for_template(self):
+    #     return {
+    #         'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
+    #     }
     def vars_for_template(self):
         return {
-            'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
+            'image_path': self.player.get_partner().testimage
         }
 
 class BonusWorker3(Page):
@@ -225,7 +229,7 @@ class BonusWorker3(Page):
 
     def vars_for_template(self):
         return {
-            'image_path': 'experiment/photo{}.jpg'.format(self.player.get_partner().participant.code)
+            'image_path': self.player.get_partner().testimage
         }
 
 class Task(Page):
