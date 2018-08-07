@@ -5,11 +5,28 @@
     Bonus Rate
 {% endblock %}
 
+{% block scripts %}
+<style>
+    button {
+        background-color: #4169E1;
+        /*border: none;*/
+        color: white;
+        /*padding: 15px 32px;*/
+        /*text-align: center;*/
+        /*text-decoration: none;*/
+        display: inline-block;
+        /*font-size: 16px;*/
+        /*margin: 4px 2px;*/
+        cursor: pointer;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
     {% formfield group.imaginary_piece_rate label="Just for a moment, imagine yourself as the boss. What bonus rate do you think you would choose for your worker?"%}
 
-    {% formfield group.guessed_piece_rate label="Before you see the bonus rate chosen by your boss, please select your best guess of what your boss would have chosen. This will not have any affect on the rate which has already been chosen by your boss. You will be paid extra 5 cents if your guess is correct." %}
+{% formfield group.guessed_piece_rate label="Before you see the bonus rate chosen by your boss, please select your best guess of what your boss would have chosen. This will not have any affect on the rate which has already been chosen by your boss. <b>You will be paid extra 5 cents if your guess is correct.</b>" %}
 
     <button>
         View the selected bonus rate
