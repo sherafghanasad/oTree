@@ -1,0 +1,24 @@
+{% extends "global/Page.html" %}
+{% load static otree %}
+
+{% block title %}
+    Survey Code
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Thank you for filling out the survey.
+</p>
+
+<p>
+    Your survey completion code is <b>{{player.participant.code}}</b>
+</p>
+
+<p>
+    Above is a unique code that is tied to the completion of your specific survey. Please enter this code into
+    the textbox on Mechanical Turk to get approved for this task and receive compensation.
+</p>
+
+
+{% endblock %}

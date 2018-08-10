@@ -53,6 +53,8 @@ class Qualified(Page):
                 self.player.race == 'White or Caucasian') and
                 self.player.age != 'Under 18')
 
+class SurveyCode(Page):
+    pass
 
 # class Results(Page):
 #     form_model = models.Player
@@ -70,9 +72,10 @@ class Qualified(Page):
 
 
 page_sequence = [
-    Consent,
+    # Consent,
     Survey,
-    Disqualified,
-    Qualified
-    # Results
+    # Disqualified,
+    # Qualified
+    # Results,
+    SurveyCode
 ]
