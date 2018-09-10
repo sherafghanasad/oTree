@@ -32,20 +32,20 @@ class Group(BaseGroup):
 class Player(BasePlayer):
     mturkid = models.StringField()
     gender = OtherModelField(
-        choices=['Male', 'Female'],
+        choices=['Male', 'Female', 'Prefer not to answer'],
         # widget=widgets.RadioSelect
     )
     race = OtherModelField(
         choices=['American Indian or Alaskan Native', 'Asian (including East and South Asia)', 'Black or African-American', 'Hispanic or Latino',
-                 'Native Hawaiian or other Pacific Islander', 'White or Caucasian'],
+                 'Native Hawaiian or other Pacific Islander', 'White or Caucasian', 'Prefer not to answer'],
     )
     age = models.StringField(
-        choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over'],
+        choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over', 'Prefer not to answer'],
         widget=widgets.RadioSelect
     )
     education = OtherModelField(
         choices=['Less than high school', 'High School or equivalent', 'Vocational/Technical School', 'Some College',
-                 'College Graduate', "Master's Degree", 'Doctoral Degree', 'Professional Degree'],
+                 'College Graduate', "Master's Degree", 'Doctoral Degree', 'Professional Degree', 'Prefer not to answer'],
         # widget=widgets.RadioSelect
     )
     testimage = django_models.TextField()

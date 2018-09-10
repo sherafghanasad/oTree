@@ -37,9 +37,9 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 #                 self.player.race != 'White or Caucasian') or
 #                 self.player.age == 'Under 18')
 
-# class GroupingWaitPage(WaitPage):
+class GroupingWaitPage(WaitPage):
 #     pass
-    # group_by_arrival_time = True
+    group_by_arrival_time = True
 
     # def before_next_page(self):
     #     self.group.treatment = random.choice(['Baseline', 'Race Salient', 'Three Stage', 'Race Salient & Three Stage'])
@@ -110,7 +110,7 @@ class EmployerDecision2(Page):
 
 class ControlQuestionsEmployer(Page):
     form_model = 'player'
-    form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5']
+    form_fields = ['Question1', 'Question2', 'Question3', 'Question4', 'Question5']
 
     def Question1_error_message(self, value):
         if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
@@ -162,7 +162,7 @@ class ControlQuestionsEmployer(Page):
 
 class ControlQuestionsWorker(Page):
     form_model = 'player'
-    form_fields = ['mturkid','Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8']
+    form_fields = ['Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8']
 
     def Question1_error_message(self, value):
         if not (value == 'Work on a task for 10 minutes.'):

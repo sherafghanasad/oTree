@@ -27,6 +27,28 @@ class Subsession(BaseSubsession):
             g.treatment = random.choice(['Baseline', 'Race Salient'])
             print('set group.treatment to', g.treatment)
 
+    # def do_my_shuffle(self):
+    #     players = self.get_players()
+    #     print('get_players are', self.get_players())
+    #
+    #     B_players = [p for p in players if p.participant.vars['Race'] == 'Black or African-American']
+    #     print('B_players are', B_players)
+    #     W_players = [p for p in players if p.participant.vars['Race'] == 'White or Caucasian']
+    #     print('W_players are', W_players)
+    #
+    #     group_matrix = []
+    #
+    #     while B_players:
+    #         new_group = [
+    #             B_players.pop(),
+    #             W_players.pop(),
+    #         ]
+    #
+    #     group_matrix.append(new_group)
+    #     self.set_group_matrix(group_matrix)
+
+
+
     # group_by_arrival_time = True
 
 class Group(BaseGroup):
@@ -73,28 +95,6 @@ class Player(BasePlayer):
     def get_partner(self):
         return self.get_others_in_group()[0]
 
-    # mturkid = models.StringField()
-    # gender = models.StringField(
-    #     choices=['Male', 'Female', 'Other', 'Prefer not to answer'],
-    #     widget=widgets.RadioSelect
-    # )
-    # race = models.StringField(
-    #     choices=['American Indian or Alaskan Native', 'Asian', 'Black or African-American', 'Native Hawaiian or other Pacific Islander',
-    #              'White or Caucasian', 'Other',  'Prefer not to answer'],
-    #     widget=widgets.RadioSelect
-    # )
-    # age = models.StringField(
-    #     choices=['Under 18', '18-24', '25-30', '31-40', '41-50', '51-64', '65 or over', 'Prefer not to answer'],
-    #     widget=widgets.RadioSelect
-    # )
-    # education = models.StringField(
-    #     choices=['High School', 'College', 'Graduate School', 'Other', 'Prefer not to answer'],
-    #     widget=widgets.RadioSelect
-    # )
-    # testimage = models.LongStringField()
-    #
-    # delete_photo = models.BooleanField()
-
     Question1 = models.LongStringField(
         choices=["Work on a task for 10 minutes.",
                  "Select a bonus rate for a team-member/worker who will work on a task.",
@@ -128,7 +128,6 @@ class Player(BasePlayer):
     Feedback = models.LongStringField(
         blank=True
     )
-    mturkid = models.StringField()
 
     testimage = django_models.TextField(default='0')
     delete_photo = models.BooleanField()

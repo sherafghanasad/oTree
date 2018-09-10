@@ -1,0 +1,27 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+{% load static otree %}
+
+{% block title %}
+    Re-Enter your information
+{% endblock %}
+
+
+{% block content %}
+
+    Please reenter the following information.
+
+    {% formfield player.mturkid label="MTurk Worker ID" %}
+
+    {% formfield player.gender label="Gender you closely identify with" %}
+
+    {% formfield player.race label="Race you closely identify with" %}
+
+    {% formfield player.age label="How old are you" %}
+
+    {% formfield player.education label="Highest education level reached" %}
+
+
+    {% next_button %}
+
+{% endblock %}

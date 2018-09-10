@@ -39,6 +39,7 @@ class Survey(Page):
         f.write( ImageData)
         f.close()
 
+        self.participant.vars['race'] = self.player.race
         # self.participant.vars['testimage'] = self.player.testimage
 
 class Disqualified(Page):
@@ -72,10 +73,10 @@ class SurveyCode(Page):
 
 
 page_sequence = [
-    # Consent,
+    Consent,
     Survey,
-    # Disqualified,
-    # Qualified
+    Disqualified,
+    Qualified
     # Results,
-    SurveyCode
+    # SurveyCode
 ]
