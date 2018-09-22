@@ -53,6 +53,11 @@ class InstructionsEmployer(Page):
     def is_displayed(self):
         return self.player.id_in_group == 1
 
+    timer_text = 'You have 7 minutes maximum to read these instructions. If you finish early, you may proceed to the ' \
+                 'next page. Time remaining:'
+
+    timeout_seconds = 420
+
 # class InstructionsEmployerRaceSalient(Page):
 #     def is_displayed(self):
 #         return (self.player.id_in_group == 1 and self.group.treatment == 'Race Salient')
@@ -64,6 +69,11 @@ class InstructionsWorker(Page):
 class EmployerTask1(Page):
     def is_displayed(self):
         return self.player.id_in_group == 1
+
+    timer_text = 'You have 2 minutes maximum to read this page. If you finish early, you may proceed to the ' \
+                 'next page. Time remaining:'
+
+    timeout_seconds = 120
 
 class EmployerTask2(Page):
     form_model = 'group'
@@ -81,6 +91,14 @@ class EmployerDecision1(Page):
     def is_displayed(self):
         return self.player.id_in_group == 1
 
+    timer_text = 'You have 3 minutes maximum on this page. If you finish early, you may proceed to the ' \
+                 'next page. Time remaining:'
+
+    timeout_seconds = 180
+    timeout_submission = {'piece_rate': 0,
+                          'guessed_points': 0,
+                          'target_points': 0}
+
 class EmployerDecision2(Page):
     form_model = 'player'
     form_fields = ['testimage']
@@ -89,28 +107,121 @@ class EmployerDecision2(Page):
         return self.player.id_in_group == 1
 
     def before_next_page(self):
-        ImageData = self.request.POST.get('testimage')
-        ImageData = dataUrlPattern.match(ImageData).group(2)
+        if self.timeout_happened != 1:
+            ImageData = self.request.POST.get('testimage')
+            ImageData = dataUrlPattern.match(ImageData).group(2)
 
-        # If none or len 0, means illegal image data
-        if (ImageData == None or len(ImageData) == 0):
-            # PRINT ERROR MESSAGE HERE
-            print('You must take a picture to continue')
+            # If none or len 0, means illegal image data
+            if (ImageData == None or len(ImageData) == 0):
+                # PRINT ERROR MESSAGE HERE
+                print('You must take a picture to continue')
 
-        # Decode the 64 bit string into 32 bit
-        ImageData = base64.b64decode(ImageData)
-        print(ImageData)
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        path_to_file = os.path.join(BASE_DIR, 'static/experiment/photo{}.jpg'.format(self.player.participant.code))
-        f = open(path_to_file, 'wb' )
-        f.write( ImageData)
-        f.close()
+            # Decode the 64 bit string into 32 bit
+            ImageData = base64.b64decode(ImageData)
+            # print(ImageData)
+            BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+            path_to_file = os.path.join(BASE_DIR, 'static/experiment/photo{}.jpg'.format(self.player.participant.code))
+            f = open(path_to_file, 'wb' )
+            f.write( ImageData)
+            f.close()
+            # if self.timeout_happened == 1:
+            #     self.player.testimage = base64.b64encode('static/experiment/Black0.jpg')
+        if self.timeout_happened:
+            with open("experiment/static/experiment/Black0.jpg", "rb") as image_file:
+                encoded_string = base64.standard_b64encode(image_file.read())
+                Black0 = 'data:image/jpeg;base64,' + str(encoded_string)
+                Black0 = Black0.replace('"', '')
+                Black0 = Black0.replace('\'', '')
+                Black0 = Black0.replace(',b/', ',/')
+
+            with open("experiment/static/experiment/Black3.jpg", "rb") as image_file:
+                encoded_string = base64.standard_b64encode(image_file.read())
+                Black3 = 'data:image/jpeg;base64,' + str(encoded_string)
+                Black3 = Black3.replace('"', '')
+                Black3 = Black3.replace('\'', '')
+                Black3 = Black3.replace(',b/', ',/')
+
+            with open("experiment/static/experiment/Black6.jpg", "rb") as image_file:
+                encoded_string = base64.standard_b64encode(image_file.read())
+                Black6 = 'data:image/jpeg;base64,' + str(encoded_string)
+                Black6 = Black6.replace('"', '')
+                Black6 = Black6.replace('\'', '')
+                Black6 = Black6.replace(',b/', ',/')
+
+            with open("experiment/static/experiment/Black9.jpg", "rb") as image_file:
+                encoded_string = base64.standard_b64encode(image_file.read())
+                Black9 = 'data:image/jpeg;base64,' + str(encoded_string)
+                Black9 = Black9.replace('"', '')
+                Black9 = Black9.replace('\'', '')
+                Black9 = Black9.replace(',b/', ',/')
+
+            if self.group.piece_rate == 0:
+                self.player.testimage = Black0
+            if self.group.piece_rate == 0.03:
+                self.player.testimage = Black3
+            if self.group.piece_rate == 0.06:
+                self.player.testimage = Black6
+            if self.group.piece_rate == 0.09:
+                self.player.testimage = Black9
+
+    timer_text = 'You have 5 minutes maximum on this page. If you finish early, you may proceed to the ' \
+                 'next page. Time remaining:'
+
+    timeout_seconds = 300
+
+    # with open("experiment/static/experiment/Black0.jpg", "rb") as image_file:
+    #     encoded_string = base64.standard_b64encode(image_file.read())
+    #     Black0 = 'data:image/jpeg;base64,' + str(encoded_string)
+    #     Black0 = Black0.replace('"', '')
+    #     Black0 = Black0.replace('\'', '')
+    #     Black0 = Black0.replace(',b/', ',/')
+    #
+    # with open("experiment/static/experiment/Black3.jpg", "rb") as image_file:
+    #     encoded_string = base64.standard_b64encode(image_file.read())
+    #     Black3 = 'data:image/jpeg;base64,' + str(encoded_string)
+    #     Black3 = Black3.replace('"', '')
+    #     Black3 = Black3.replace('\'', '')
+    #     Black3 = Black3.replace(',b/', ',/')
+    #
+    # with open("experiment/static/experiment/Black6.jpg", "rb") as image_file:
+    #     encoded_string = base64.standard_b64encode(image_file.read())
+    #     Black6 = 'data:image/jpeg;base64,' + str(encoded_string)
+    #     Black6 = Black6.replace('"', '')
+    #     Black6 = Black6.replace('\'', '')
+    #     Black6 = Black6.replace(',b/', ',/')
+    #
+    # with open("experiment/static/experiment/Black9.jpg", "rb") as image_file:
+    #     encoded_string = base64.standard_b64encode(image_file.read())
+    #     Black9 = 'data:image/jpeg;base64,' + str(encoded_string)
+    #     Black9 = Black9.replace('"', '')
+    #     Black9 = Black9.replace('\'', '')
+    #     Black9 = Black9.replace(',b/', ',/')
+
+    # if group.piece_rate == 0:
+    #     timeout_submission = {'testimage': Black0}
+    # if group.piece_rate == 0.03:
+    #     timeout_submission = {'testimage': Black3}
+    # if group.piece_rate == 0.06:
+    #     timeout_submission = {'testimage': Black6}
+    # if group.piece_rate == 0.09:
+    #     timeout_submission = {'testimage': Black9}
 
 
 
 class ControlQuestionsEmployer(Page):
     form_model = 'player'
-    form_fields = ['Question1', 'Question2', 'Question3', 'Question4', 'Question5']
+    form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5']
+
+    timer_text = 'You have 7 minutes maximum to answer these questions. If you finish early, you may proceed to the ' \
+                 'next page. Time remaining:'
+
+    timeout_seconds = 420
+    timeout_submission = {'mturkid':'NOT PROVIDED',
+                          'Question1': 'Select a bonus rate for a team-member/worker who will work on a task.',
+                          'Question2': 0,
+                          'Question3': 9,
+                          'Question4': True,
+                          'Question5': True}
 
     def Question1_error_message(self, value):
         if (self.group.treatment == 'Baseline' or self.group.treatment == 'Race Salient'):
@@ -162,7 +273,7 @@ class ControlQuestionsEmployer(Page):
 
 class ControlQuestionsWorker(Page):
     form_model = 'player'
-    form_fields = ['Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8']
+    form_fields = ['mturkid', 'Question1', 'Question2', 'Question3', 'Question4', 'Question5', 'Question8']
 
     def Question1_error_message(self, value):
         if not (value == 'Work on a task for 10 minutes.'):
@@ -243,6 +354,8 @@ class Task(Page):
     form_fields = ['points']
 
     timeout_seconds = 600
+
+    timer_text = 'You have 10 minutes maximum to work on the task. Time remaining:'
 
     def vars_for_template(self):
         return {'other_bonus': (0.1 - self.group.piece_rate)}

@@ -95,6 +95,8 @@ class Player(BasePlayer):
     def get_partner(self):
         return self.get_others_in_group()[0]
 
+    mturkid = models.StringField()
+
     Question1 = models.LongStringField(
         choices=["Work on a task for 10 minutes.",
                  "Select a bonus rate for a team-member/worker who will work on a task.",

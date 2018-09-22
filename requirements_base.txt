@@ -1,2 +1,2 @@
 otree[mturk]>=2.1.13
-otree_tools
+otree-tools>=0.1.0

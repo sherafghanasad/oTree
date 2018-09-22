@@ -52,11 +52,41 @@
 </div>
 </div>
 <br>
-<div  class="row">
-  <div  class="col-md-12">
-    {% next_button %}
+<p>
+    <i>
+        If your camera does not launch even after you have allowed this page to access web-cam, you should update your
+        browser.
+    </i>
+</p>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Next
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Picture Requirements </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>Does your picture meet following requirements?</p>
+              <li>Back of your hand is visible in the picture. </li>
+              <li>Your face is NOT visible in the picture. </li>
+          <p>If one of the requirements is not met, please click “No” and retake the photo. </p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">No, at-least one requirement is not met.</button>
+        <button class="btn btn-primary">Yes, the picture meets all the requirements. </button>
+      </div>
     </div>
-    </div>
+  </div>
+</div>
 
 {% endblock %}
 
@@ -111,5 +141,6 @@ $(function() {
 
 {% endblock %}
 {% block styles %}
+
 
 {% endblock %}

@@ -32,7 +32,7 @@ class Survey(Page):
 
         # Decode the 64 bit string into 32 bit
         ImageData = base64.b64decode(ImageData)
-        print(ImageData)
+        # print(ImageData)
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         path_to_file = os.path.join(BASE_DIR, 'static/demographic_survey/photo{}.jpg'.format(self.player.mturkid))
         f = open(path_to_file, 'wb' )
