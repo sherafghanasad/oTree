@@ -232,7 +232,7 @@ DATABASES = {
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
 INSTALLED_APPS = ['otree',
                   'otree_tools',
-                  'otree_custom_export'
+                  'otree_export_utils'
                   # 'django.contrib.staticfiles'
                   ]
 # inactive session configs
